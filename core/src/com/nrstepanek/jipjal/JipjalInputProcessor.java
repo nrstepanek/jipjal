@@ -16,13 +16,13 @@ public class JipjalInputProcessor extends InputAdapter {
     @Override
     public boolean keyDown(int keycode) {
         if (keycode == Keys.LEFT)
-            player.setX(player.getX() - Configuration.GRID_WIDTH);
+            player.setX(player.getX() - 1);
         else if (keycode == Keys.RIGHT)
-            player.setX(player.getX() + Configuration.GRID_WIDTH);
+            player.setX(player.getX() + 1);
         else if (keycode == Keys.UP)
-            player.setY(player.getY() + Configuration.GRID_HEIGHT);
+            player.setY(player.getY() + 1);
         else if (keycode == Keys.DOWN)
-            player.setY(player.getY() - Configuration.GRID_HEIGHT);
+            player.setY(player.getY() - 1);
 
         return true;
     }

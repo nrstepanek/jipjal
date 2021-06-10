@@ -1,15 +1,20 @@
 package com.nrstepanek.jipjal;
 
-public class Cell {
+import com.badlogic.gdx.graphics.Texture;
+
+import com.nrstepanek.jipjal.GridDrawable;
+
+public class Cell extends GridDrawable {
 
     private boolean solid;
 
-    public Cell() {
+    public Cell(Texture t, int x, int y) {
+        super(t, x, y);
         this.solid = false;
     }
 
     public boolean getSolid() {
-        return solid;
+        return this.solid;
     }
 
     public void setSolid(boolean solid) {
