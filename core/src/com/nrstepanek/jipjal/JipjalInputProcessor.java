@@ -7,22 +7,22 @@ import com.nrstepanek.jipjal.Configuration;
 
 public class JipjalInputProcessor extends InputAdapter {
 
-    private Player player;
+    JipjalLogic logic;
 
-    public JipjalInputProcessor(Player player) {
-        this.player = player;
+    public JipjalInputProcessor(JipjalLogic logic) {
+        this.logic = logic;
     }
 
     @Override
     public boolean keyDown(int keycode) {
         if (keycode == Keys.LEFT)
-            player.setX(player.getX() - 1);
+            logic.playerMove(0);
         else if (keycode == Keys.RIGHT)
-            player.setX(player.getX() + 1);
+            logic.playerMove(2);
         else if (keycode == Keys.UP)
-            player.setY(player.getY() + 1);
+            logic.playerMove(1);
         else if (keycode == Keys.DOWN)
-            player.setY(player.getY() - 1);
+            logic.playerMove(3);
 
         return true;
     }

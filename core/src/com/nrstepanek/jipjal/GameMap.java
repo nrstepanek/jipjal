@@ -42,8 +42,9 @@ public class GameMap {
                 solid = true;
             }
 
-            System.out.println(i % width);
             Cell newCell = new Cell(texture, i % width, (int) Math.floor(i / height));
+			newCell.setSolid(solid);
+
             cellMap.put(i, newCell);
         }
     }
@@ -53,6 +54,10 @@ public class GameMap {
             cell.getSprite().draw(batch);
         }
     }
+
+	public Cell getCell(int x, int y) {
+		return cellMap.get(y * width + x);
+	}
 
     public int getWidth() {
         return this.width;

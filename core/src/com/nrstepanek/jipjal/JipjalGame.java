@@ -16,6 +16,7 @@ import com.nrstepanek.jipjal.Cell;
 import com.nrstepanek.jipjal.GameMap;
 import com.nrstepanek.jipjal.TextureHolder;
 import com.nrstepanek.jipjal.JipjalInputProcessor;
+import com.nrstepanek.jipjal.JipjalLogic;
 
 public class JipjalGame extends ApplicationAdapter {
 	SpriteBatch batch;
@@ -25,6 +26,8 @@ public class JipjalGame extends ApplicationAdapter {
 	GameMap gameMap;
 
 	Player player;
+
+	JipjalLogic logic;
 	
 	@Override
 	public void create () {
@@ -33,10 +36,13 @@ public class JipjalGame extends ApplicationAdapter {
 		batch = new SpriteBatch();
 		player = new Player(textureHolder.getTexture("player"), 1, 1);
 
-		InputProcessor inputProcessor = new JipjalInputProcessor(player);
+		gameMap = new GameMap(32, 32, textureHolder);
+
+		logic = new JipjalLogic(player, gameMap);
+
+		InputProcessor inputProcessor = new JipjalInputProcessor(logic);
 		Gdx.input.setInputProcessor(inputProcessor);
 
-		gameMap = new GameMap(32, 32, textureHolder);
 	}
 
 	@Override
