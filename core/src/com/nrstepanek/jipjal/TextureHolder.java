@@ -41,4 +41,21 @@ public class TextureHolder {
 
 		return null;
 	}
+
+	public Texture getTextureFromObjectType(ObjectType objectType) {
+		switch (objectType) {
+			case BLUE_LOCK:
+				return getTexture("blue_lock");
+			case YELLOW_LOCK:
+				return getTexture("yellow_lock");
+			case RED_LOCK:
+				return getTexture("red_lock");
+			case GREEN_LOCK:
+				return getTexture("green_lock");
+			case NONE:
+				return null;
+		}
+
+		return null;
+	}
 }

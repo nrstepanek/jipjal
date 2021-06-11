@@ -10,4 +10,16 @@ public class Player extends GridDrawable {
         super(t, x, y);
 		this.inventory = new Inventory();
     }
+
+	public boolean hasItem(ItemType itemType) {
+		return inventory.hasItem(itemType);
+	}
+
+	public int getItemIndex(ItemType itemType) {
+		return inventory.getItemIndex(itemType);
+	}
+
+	public Item removeItemAtIndex(int index) {
+		return inventory.removeItemAtIndex(index);
+	}
 }

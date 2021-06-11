@@ -69,6 +69,11 @@ public class GameMap {
 		Item blueKeyItem = new Item(ItemType.BLUE_KEY);
 		cell4.addItem(blueKeyItem, th.getTextureFromItemType(ItemType.BLUE_KEY));
 		addToCellMap(cell4);
+
+		Cell cell5 = new Cell(th.getTexture("grass"), 1, 5);
+		cell5.setSolid(true);
+		cell5.setObjectType(ObjectType.BLUE_LOCK, th.getTextureFromObjectType(ObjectType.BLUE_LOCK));
+		addToCellMap(cell5);
 		// Cell keyDoorCell = new Cell(th.getTexture("keydoor"), 3, 3);
 		// keyDoorCell.setSolid(true);
 		// keyDoorCell.setObjectType(ObjectType.KEY_DOOR);

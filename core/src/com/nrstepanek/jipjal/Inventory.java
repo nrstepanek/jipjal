@@ -27,4 +27,17 @@ public class Inventory {
 
 		return false;
 	}
+
+	public int getItemIndex(ItemType itemType) {
+		for (int i = 0; i < items.size(); i++) {
+			if (items.get(i).getItemType() == itemType)
+				return i;
+		}
+
+		return -1;
+	}
+
+	public Item removeItemAtIndex(int index) {
+		return this.items.remove(index);
+	}
 }

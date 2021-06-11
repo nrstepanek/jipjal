@@ -2,5 +2,8 @@ package com.nrstepanek.jipjal;
 
 public enum ObjectType {
 	NONE,
-	KEY_DOOR
+	BLUE_LOCK,
+	GREEN_LOCK,
+	RED_LOCK,
+	YELLOW_LOCK
 }
