@@ -22,6 +22,9 @@ public class TextureHolder {
 
 		Texture wallTexture = new Texture(Gdx.files.internal("wall.png"));
         textureMap.put("wall", wallTexture);
+
+		Texture keyDoorTexture = new Texture(Gdx.files.internal("keydoor.png"));
+		textureMap.put("keydoor", keyDoorTexture);
     }
 
     public Texture getTexture(String textureName) {

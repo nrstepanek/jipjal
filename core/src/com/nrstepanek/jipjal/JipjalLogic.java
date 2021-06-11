@@ -26,7 +26,6 @@ public class JipjalLogic {
 		Cell newCell = gameMap.getCell(newX, newY);
 
 		if (!newCell.getSolid()) {
-			System.out.println("Moving");
 			player.setPosition(newX, newY);
 		}
 	}

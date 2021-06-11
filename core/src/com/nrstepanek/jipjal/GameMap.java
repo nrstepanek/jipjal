@@ -56,18 +56,31 @@ public class GameMap {
 
 	public void generateTestMap() {
 		Cell cell1 = new Cell(th.getTexture("wall"), 0, 0);
-		cellMap.put(getCellLoc(cell1), cell1);
+		cell1.setSolid(true);
+		addToCellMap(cell1);
 		Cell cell2 = new Cell(th.getTexture("wall"), 0, 1);
-		cellMap.put(getCellLoc(cell2), cell2);
+		cell2.setSolid(true);
+		addToCellMap(cell2);
 		Cell cell3 = new Cell(th.getTexture("wall"), 1, 0);
-		cellMap.put(getCellLoc(cell3), cell3);
+		cell3.setSolid(true);
+		addToCellMap(cell3);
+
+		Cell keyDoorCell = new Cell(th.getTexture("keydoor"), 3, 3);
+		keyDoorCell.setSolid(true);
+		keyDoorCell.setObjectType(ObjectType.KEY_DOOR);
+		addToCellMap(keyDoorCell);
 
 		for (int i = 0; i < width * height; i++) {
 			if (!cellMap.containsKey(i)) {
+				System.out.println(i);
 				Cell newCell = new Cell(th.getTexture("grass"), i % width, (int) Math.floor(i / height));
-				cellMap.put(i, newCell);
+				addToCellMap(newCell);
 			}
 		}
+	}
+
+	public void addToCellMap(Cell cell) {
+		cellMap.put(getCellLoc(cell), cell);
 	}
 
     public void drawCells(SpriteBatch batch) {
