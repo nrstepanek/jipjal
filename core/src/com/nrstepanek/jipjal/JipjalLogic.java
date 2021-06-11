@@ -1,8 +1,5 @@
 package com.nrstepanek.jipjal;
 
-import com.nrstepanek.jipjal.Player;
-import com.nrstepanek.jipjal.GameMap;
-
 public class JipjalLogic {
 
 	Player player;

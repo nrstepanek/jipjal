@@ -2,8 +2,6 @@ package com.nrstepanek.jipjal;
 
 import com.badlogic.gdx.graphics.Texture;
 
-import com.nrstepanek.jipjal.GridDrawable;
-
 public class Cell extends GridDrawable {
 
     private boolean solid;

@@ -3,8 +3,6 @@ package com.nrstepanek.jipjal;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.Input.Keys;
 
-import com.nrstepanek.jipjal.Configuration;
-
 public class JipjalInputProcessor extends InputAdapter {
 
     JipjalLogic logic;

@@ -4,19 +4,8 @@ import com.badlogic.gdx.Gdx;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
-
-import com.nrstepanek.jipjal.Player;
-import com.nrstepanek.jipjal.Cell;
-import com.nrstepanek.jipjal.GameMap;
-import com.nrstepanek.jipjal.TextureHolder;
-import com.nrstepanek.jipjal.JipjalInputProcessor;
-import com.nrstepanek.jipjal.JipjalLogic;
 
 public class JipjalGame extends ApplicationAdapter {
 	SpriteBatch batch;

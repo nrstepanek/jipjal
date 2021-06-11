@@ -8,9 +8,6 @@ import java.lang.Math;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import com.nrstepanek.jipjal.Cell;
-import com.nrstepanek.jipjal.TextureHolder;
-
 public class GameMap {
 
     private int width;
