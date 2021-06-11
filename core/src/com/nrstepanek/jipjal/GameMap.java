@@ -65,14 +65,17 @@ public class GameMap {
 		cell3.setSolid(true);
 		addToCellMap(cell3);
 
-		Cell keyDoorCell = new Cell(th.getTexture("keydoor"), 3, 3);
-		keyDoorCell.setSolid(true);
-		keyDoorCell.setObjectType(ObjectType.KEY_DOOR);
-		addToCellMap(keyDoorCell);
+		Cell cell4 = new Cell(th.getTexture("grass"), 5, 5);
+		Item blueKeyItem = new Item(ItemType.BLUE_KEY);
+		cell4.addItem(blueKeyItem, th.getTextureFromItemType(ItemType.BLUE_KEY));
+		addToCellMap(cell4);
+		// Cell keyDoorCell = new Cell(th.getTexture("keydoor"), 3, 3);
+		// keyDoorCell.setSolid(true);
+		// keyDoorCell.setObjectType(ObjectType.KEY_DOOR);
+		// addToCellMap(keyDoorCell);
 
 		for (int i = 0; i < width * height; i++) {
 			if (!cellMap.containsKey(i)) {
-				System.out.println(i);
 				Cell newCell = new Cell(th.getTexture("grass"), i % width, (int) Math.floor(i / height));
 				addToCellMap(newCell);
 			}

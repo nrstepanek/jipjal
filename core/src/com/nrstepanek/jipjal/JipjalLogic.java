@@ -25,6 +25,11 @@ public class JipjalLogic {
 
 		Cell newCell = gameMap.getCell(newX, newY);
 
+		if (newCell.hasItem()) {
+			player.inventory.addItem(newCell.getItem());
+			newCell.removeItem();
+		}
+
 		if (!newCell.getSolid()) {
 			player.setPosition(newX, newY);
 		}
