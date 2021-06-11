@@ -25,7 +25,8 @@ public class JipjalGame extends ApplicationAdapter {
 		batch = new SpriteBatch();
 		player = new Player(textureHolder.getTexture("player"), 1, 1);
 
-		gameMap = new GameMap(32, 32, textureHolder);
+		// gameMap = new GameMap(32, 32, textureHolder);
+		gameMap = new GameMap(textureHolder);
 
 		logic = new JipjalLogic(player, gameMap);
 

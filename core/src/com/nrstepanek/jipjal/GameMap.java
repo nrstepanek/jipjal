@@ -15,15 +15,23 @@ public class GameMap {
 
     private Map<Integer, Cell> cellMap;
 
-    private TextureHolder textureHolder;
+    private TextureHolder th;
 
     public GameMap(int width, int height, TextureHolder textureHolder) {
         this.width = width;
         this.height = height;
-        this.textureHolder = textureHolder;
+        this.th = textureHolder;
         this.cellMap = new HashMap<>();
         randomGenerate();
     }
+
+	public GameMap(TextureHolder textureHolder) {
+		this.width = 10;
+		this.height = 10;
+		this.th = textureHolder;
+		this.cellMap = new HashMap<>();
+		generateTestMap();
+	}
 
     public void randomGenerate() {
         Random rand = new Random();
@@ -33,9 +41,9 @@ public class GameMap {
             boolean solid = false;
 
             if (rand.nextFloat() > 0.1f) {
-                texture = textureHolder.getTexture("grass");
+                texture = th.getTexture("grass");
             } else {
-                texture = textureHolder.getTexture("wall");
+                texture = th.getTexture("wall");
                 solid = true;
             }
 
@@ -46,11 +54,31 @@ public class GameMap {
         }
     }
 
+	public void generateTestMap() {
+		Cell cell1 = new Cell(th.getTexture("wall"), 0, 0);
+		cellMap.put(getCellLoc(cell1), cell1);
+		Cell cell2 = new Cell(th.getTexture("wall"), 0, 1);
+		cellMap.put(getCellLoc(cell2), cell2);
+		Cell cell3 = new Cell(th.getTexture("wall"), 1, 0);
+		cellMap.put(getCellLoc(cell3), cell3);
+
+		for (int i = 0; i < width * height; i++) {
+			if (!cellMap.containsKey(i)) {
+				Cell newCell = new Cell(th.getTexture("grass"), i % width, (int) Math.floor(i / height));
+				cellMap.put(i, newCell);
+			}
+		}
+	}
+
     public void drawCells(SpriteBatch batch) {
         for (Cell cell : cellMap.values()) {
             cell.getSprite().draw(batch);
         }
     }
+
+	public int getCellLoc(Cell cell) {
+		return cell.getX() + cell.getY() * this.width;
+	}
 
 	public Cell getCell(int x, int y) {
 		return cellMap.get(y * width + x);
