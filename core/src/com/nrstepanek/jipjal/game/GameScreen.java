@@ -5,20 +5,32 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.nrstepanek.jipjal.JipjalGame;
+import com.nrstepanek.jipjal.map.JipjalMap;
 
 public class GameScreen implements Screen {
 
 	JipjalGame game;
 
+	JipjalMap gameMap;
+
+	Player player;
+
+	GameLogic logic;
+
 	public GameScreen(JipjalGame game) {
 		this.game = game;
+
+		player = new Player(game.textureHolder.getTexture("player"), 1, 1);
+
+		// gameMap = new GameMap(32, 32, textureHolder);
+		gameMap = new JipjalMap(game.textureHolder);
+
+		logic = new GameLogic(player, gameMap);
 	}
 
 	@Override
 	public void show() {
-		System.out.println("show");
-		// TODO Auto-generated method stub
-		InputProcessor inputProcessor = new GameInputProcessor(game.logic);
+		InputProcessor inputProcessor = new GameInputProcessor(logic);
 		Gdx.input.setInputProcessor(inputProcessor);
 	}
 
@@ -26,8 +38,8 @@ public class GameScreen implements Screen {
 	public void render(float delta) {
 		ScreenUtils.clear(0.9f, 0.9f, 1, 1);
 		game.batch.begin();
-		game.gameMap.drawCells(game.batch);
-		game.player.getSprite().draw(game.batch);
+		gameMap.drawCells(game.batch);
+		player.getSprite().draw(game.batch);
 		game.batch.end();
 	}
 

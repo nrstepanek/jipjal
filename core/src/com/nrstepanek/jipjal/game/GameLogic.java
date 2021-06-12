@@ -31,7 +31,6 @@ public class GameLogic {
 		Cell newCell = gameMap.getCell(newX, newY);
 
 		if (newCell.hasItem()) {
-			System.out.println("Picked up item.");
 			player.inventory.addItem(newCell.getItem());
 			newCell.removeItem();
 		}
@@ -48,11 +47,9 @@ public class GameLogic {
 
 	// Returns true if a door was unlocked.
 	public boolean doorLogic(Cell newCell) {
-		System.out.println("Door logic");
 		boolean unlockDoor = false;
 		ItemType keyType = null;
 		if (newCell.getObjectType() == ObjectType.BLUE_LOCK) {
-			System.out.println("Blue lock.");
 			if (player.hasItem(ItemType.BLUE_KEY)) {
 				unlockDoor = true;
 				keyType = ItemType.BLUE_KEY;
@@ -78,7 +75,6 @@ public class GameLogic {
 		}
 
 		if (unlockDoor) {
-			System.out.println("Unlocking.");
 			int keyIndex = player.getItemIndex(keyType);
 			player.removeItemAtIndex(keyIndex);
 			newCell.destroyObject();
