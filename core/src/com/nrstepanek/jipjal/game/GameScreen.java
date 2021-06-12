@@ -19,7 +19,6 @@ public class GameScreen implements Screen {
 
 	GameLogic logic;
 
-	OrthographicCamera camera;
 
 	public GameScreen(JipjalGame game) {
 		this.game = game;
@@ -30,9 +29,7 @@ public class GameScreen implements Screen {
 		gameMap = new JipjalMap(game.textureHolder);
 
 		logic = new GameLogic(player, gameMap, this);
-
-		camera = new OrthographicCamera(640, 320);
-
+		updateCamera();
 	}
 
 	@Override
@@ -45,14 +42,17 @@ public class GameScreen implements Screen {
 	public void render(float delta) {
 		ScreenUtils.clear(0.9f, 0.9f, 1, 1);
 
-		game.batch.setProjectionMatrix(camera.combined);
+		game.batch.setProjectionMatrix(game.camera.combined);
 
-		camera.position.set(player.getSprite().getX(), player.getSprite().getY(), 0);
-		camera.update();
 		game.batch.begin();
 		gameMap.drawCells(game.batch);
 		player.getSprite().draw(game.batch);
 		game.batch.end();
+	}
+
+	public void updateCamera() {
+		game.camera.position.set(player.getSprite().getX(), player.getSprite().getY(), 0);
+		game.camera.update();
 	}
 
 	public void gameOver() {

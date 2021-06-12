@@ -3,13 +3,14 @@ package com.nrstepanek.jipjal.map;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Random;
+import java.io.Serializable;
 import java.lang.Math;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.nrstepanek.jipjal.TextureHolder;
 
-public class JipjalMap {
+public class JipjalMap implements Serializable {
 
     private int width;
     private int height;
@@ -89,6 +90,13 @@ public class JipjalMap {
 		Cell goalCell = new Cell (th.getTexture("goal"), 5, 8);
 		goalCell.setIsGoal(true);
 		addToCellMap(goalCell);
+
+		Cell iceCell = new Cell(th.getTexture("ice"), 3, 1);
+		iceCell.setIsIce(true);
+		addToCellMap(iceCell);
+		Cell iceCell2 = new Cell(th.getTexture("ice"), 4, 1);
+		iceCell2.setIsIce(true);
+		addToCellMap(iceCell2);
 
 		for (int i = 0; i < width * height; i++) {
 			if (!cellMap.containsKey(i)) {

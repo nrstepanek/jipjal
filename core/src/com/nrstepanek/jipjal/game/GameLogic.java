@@ -49,10 +49,12 @@ public class GameLogic {
 
 		if (!newCell.getSolid()) {
 			player.setPosition(newX, newY);
+			gameScreen.updateCamera();
 		} else {
 			// DOOR CHECK BEGIN
 			if (doorLogic(newCell)) {
 				player.setPosition(newX, newY);
+				gameScreen.updateCamera();
 			}
 		}
 	}

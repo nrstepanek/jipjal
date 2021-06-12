@@ -9,6 +9,8 @@ public class Player extends GridDrawable {
 
 	Inventory inventory;
 
+	private boolean slipping;
+
     public Player(Texture t, int x, int y) {
         super(t, x, y);
 		this.inventory = new Inventory();
@@ -24,5 +26,13 @@ public class Player extends GridDrawable {
 
 	public Item removeItemAtIndex(int index) {
 		return inventory.removeItemAtIndex(index);
+	}
+
+	public boolean getSlipping() {
+		return this.slipping;
+	}
+
+	public void setSlipping(boolean slipping) {
+		this.slipping = slipping;
 	}
 }
