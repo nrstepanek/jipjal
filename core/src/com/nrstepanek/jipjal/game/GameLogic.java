@@ -1,22 +1,20 @@
 package com.nrstepanek.jipjal.game;
 
-import com.nrstepanek.jipjal.JipjalGame;
 import com.nrstepanek.jipjal.map.Cell;
 import com.nrstepanek.jipjal.map.JipjalMap;
 import com.nrstepanek.jipjal.map.ItemType;
 import com.nrstepanek.jipjal.map.ObjectType;
-import com.nrstepanek.jipjal.menu.MenuScreen;
 
 public class GameLogic {
 
 	Player player;
 	JipjalMap gameMap;
-	JipjalGame game;
+	GameScreen gameScreen;
 
-	public GameLogic(Player player, JipjalMap gameMap, JipjalGame game) {
+	public GameLogic(Player player, JipjalMap gameMap, GameScreen gameScreen) {
 		this.player = player;
 		this.gameMap = gameMap;
-		this.game = game;
+		this.gameScreen = gameScreen;
 	}
 
 	public void playerMove(int direction) {
@@ -41,12 +39,12 @@ public class GameLogic {
 
 		// Check death
 		if (newCell.getDangerous()) {
-			game.setScreen(new MenuScreen(game));
+			gameScreen.gameOver();
 		}
 
 		// Check goal
 		if (newCell.getIsGoal()) {
-			game.setScreen(new MenuScreen(game));
+			gameScreen.gameOver();
 		}
 
 		if (!newCell.getSolid()) {

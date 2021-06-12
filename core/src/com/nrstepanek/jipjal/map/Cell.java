@@ -9,6 +9,7 @@ public class Cell extends GridDrawable {
     private boolean solid;
 	private boolean dangerous;
 	private boolean isGoal;
+	private boolean isPlayerStart;
 
 	private ObjectType objectType;
 
@@ -22,6 +23,7 @@ public class Cell extends GridDrawable {
 		this.objectType = ObjectType.NONE;
 		this.dangerous = false;
 		this.isGoal = false;
+		this.isPlayerStart = false;
     }
 
     public boolean getSolid() {
@@ -50,6 +52,14 @@ public class Cell extends GridDrawable {
 
 	public ObjectType getObjectType() {
 		return this.objectType;
+	}
+
+	public boolean getIsPlayerStart() {
+		return this.isPlayerStart;
+	}
+
+	public void setIsPlayerStart(boolean isPlayerStart) {
+		this.isPlayerStart = isPlayerStart;
 	}
 
 	public void setObjectType(ObjectType objectType, Texture texture) {

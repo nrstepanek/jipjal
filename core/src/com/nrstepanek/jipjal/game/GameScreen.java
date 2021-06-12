@@ -3,9 +3,11 @@ package com.nrstepanek.jipjal.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.nrstepanek.jipjal.JipjalGame;
 import com.nrstepanek.jipjal.map.JipjalMap;
+import com.nrstepanek.jipjal.menu.MenuScreen;
 
 public class GameScreen implements Screen {
 
@@ -17,6 +19,8 @@ public class GameScreen implements Screen {
 
 	GameLogic logic;
 
+	OrthographicCamera camera;
+
 	public GameScreen(JipjalGame game) {
 		this.game = game;
 
@@ -25,7 +29,10 @@ public class GameScreen implements Screen {
 		// gameMap = new GameMap(32, 32, textureHolder);
 		gameMap = new JipjalMap(game.textureHolder);
 
-		logic = new GameLogic(player, gameMap, game);
+		logic = new GameLogic(player, gameMap, this);
+
+		camera = new OrthographicCamera(640, 320);
+
 	}
 
 	@Override
@@ -37,10 +44,19 @@ public class GameScreen implements Screen {
 	@Override
 	public void render(float delta) {
 		ScreenUtils.clear(0.9f, 0.9f, 1, 1);
+
+		game.batch.setProjectionMatrix(camera.combined);
+
+		camera.position.set(player.getSprite().getX(), player.getSprite().getY(), 0);
+		camera.update();
 		game.batch.begin();
 		gameMap.drawCells(game.batch);
 		player.getSprite().draw(game.batch);
 		game.batch.end();
+	}
+
+	public void gameOver() {
+		game.setScreen(new MenuScreen(game));
 	}
 
 	@Override
