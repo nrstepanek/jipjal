@@ -1,11 +1,16 @@
-package com.nrstepanek.jipjal;
+package com.nrstepanek.jipjal.game;
 
-public class JipjalLogic {
+import com.nrstepanek.jipjal.map.Cell;
+import com.nrstepanek.jipjal.map.JipjalMap;
+import com.nrstepanek.jipjal.map.ItemType;
+import com.nrstepanek.jipjal.map.ObjectType;
+
+public class GameLogic {
 
 	Player player;
-	GameMap gameMap;
+	JipjalMap gameMap;
 
-	public JipjalLogic(Player player, GameMap gameMap) {
+	public GameLogic(Player player, JipjalMap gameMap) {
 		this.player = player;
 		this.gameMap = gameMap;
 	}

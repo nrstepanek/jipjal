@@ -7,6 +7,8 @@ import java.util.Map;
 import java.util.HashMap;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.nrstepanek.jipjal.map.ItemType;
+import com.nrstepanek.jipjal.map.ObjectType;
 
 public class TextureHolder {
 

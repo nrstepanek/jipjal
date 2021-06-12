@@ -1,13 +1,13 @@
-package com.nrstepanek.jipjal;
+package com.nrstepanek.jipjal.game;
 
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.Input.Keys;
 
-public class JipjalInputProcessor extends InputAdapter {
+public class GameInputProcessor extends InputAdapter {
 
-    JipjalLogic logic;
+    GameLogic logic;
 
-    public JipjalInputProcessor(JipjalLogic logic) {
+    public GameInputProcessor(GameLogic logic) {
         this.logic = logic;
     }
 

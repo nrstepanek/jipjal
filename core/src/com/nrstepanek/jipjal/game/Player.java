@@ -1,6 +1,9 @@
-package com.nrstepanek.jipjal;
+package com.nrstepanek.jipjal.game;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.nrstepanek.jipjal.GridDrawable;
+import com.nrstepanek.jipjal.map.Item;
+import com.nrstepanek.jipjal.map.ItemType;
 
 public class Player extends GridDrawable {
 

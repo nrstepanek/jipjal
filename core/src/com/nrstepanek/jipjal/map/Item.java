@@ -1,4 +1,4 @@
-package com.nrstepanek.jipjal;
+package com.nrstepanek.jipjal.map;
 
 public class Item {
 

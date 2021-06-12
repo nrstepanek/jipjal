@@ -1,22 +1,22 @@
 package com.nrstepanek.jipjal;
 
-import com.badlogic.gdx.Gdx;
-
-import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.utils.ScreenUtils;
+import com.nrstepanek.jipjal.game.GameScreen;
+import com.nrstepanek.jipjal.game.GameLogic;
+import com.nrstepanek.jipjal.game.Player;
+import com.nrstepanek.jipjal.map.JipjalMap;
 
-public class JipjalGame extends ApplicationAdapter {
-	SpriteBatch batch;
+public class JipjalGame extends Game {
+	public SpriteBatch batch;
 
-	TextureHolder textureHolder;
+	public TextureHolder textureHolder;
 
-	GameMap gameMap;
+	public JipjalMap gameMap;
 
-	Player player;
+	public Player player;
 
-	JipjalLogic logic;
+	public GameLogic logic;
 	
 	@Override
 	public void create () {
@@ -26,22 +26,11 @@ public class JipjalGame extends ApplicationAdapter {
 		player = new Player(textureHolder.getTexture("player"), 1, 1);
 
 		// gameMap = new GameMap(32, 32, textureHolder);
-		gameMap = new GameMap(textureHolder);
+		gameMap = new JipjalMap(textureHolder);
 
-		logic = new JipjalLogic(player, gameMap);
+		logic = new GameLogic(player, gameMap);
 
-		InputProcessor inputProcessor = new JipjalInputProcessor(logic);
-		Gdx.input.setInputProcessor(inputProcessor);
-
-	}
-
-	@Override
-	public void render () {
-		ScreenUtils.clear(0.9f, 0.9f, 1, 1);
-		batch.begin();
-		gameMap.drawCells(batch);
-		player.getSprite().draw(batch);
-		batch.end();
+		setScreen(new GameScreen(this));
 	}
 
 	@Override

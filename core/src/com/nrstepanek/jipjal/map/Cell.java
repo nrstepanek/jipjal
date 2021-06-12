@@ -1,7 +1,8 @@
-package com.nrstepanek.jipjal;
+package com.nrstepanek.jipjal.map;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.nrstepanek.jipjal.GridDrawable;
 
 public class Cell extends GridDrawable {
 

@@ -1,4 +1,4 @@
-package com.nrstepanek.jipjal;
+package com.nrstepanek.jipjal.map;
 
 import java.util.Map;
 import java.util.HashMap;
@@ -7,8 +7,9 @@ import java.lang.Math;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.nrstepanek.jipjal.TextureHolder;
 
-public class GameMap {
+public class JipjalMap {
 
     private int width;
     private int height;
@@ -17,7 +18,7 @@ public class GameMap {
 
     private TextureHolder th;
 
-    public GameMap(int width, int height, TextureHolder textureHolder) {
+    public JipjalMap(int width, int height, TextureHolder textureHolder) {
         this.width = width;
         this.height = height;
         this.th = textureHolder;
@@ -25,7 +26,7 @@ public class GameMap {
         randomGenerate();
     }
 
-	public GameMap(TextureHolder textureHolder) {
+	public JipjalMap(TextureHolder textureHolder) {
 		this.width = 10;
 		this.height = 10;
 		this.th = textureHolder;

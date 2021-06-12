@@ -1,7 +1,10 @@
-package com.nrstepanek.jipjal;
+package com.nrstepanek.jipjal.game;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.nrstepanek.jipjal.map.Item;
+import com.nrstepanek.jipjal.map.ItemType;
 
 public class Inventory {
 
