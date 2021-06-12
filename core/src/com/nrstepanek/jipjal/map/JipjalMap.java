@@ -75,10 +75,20 @@ public class JipjalMap {
 		cell5.setSolid(true);
 		cell5.setObjectType(ObjectType.BLUE_LOCK, th.getTextureFromObjectType(ObjectType.BLUE_LOCK));
 		addToCellMap(cell5);
-		// Cell keyDoorCell = new Cell(th.getTexture("keydoor"), 3, 3);
-		// keyDoorCell.setSolid(true);
-		// keyDoorCell.setObjectType(ObjectType.KEY_DOOR);
-		// addToCellMap(keyDoorCell);
+
+		Cell fireCell = new Cell(th.getTexture("grass"), 1, 6);
+		fireCell.setDangerous(true);
+		fireCell.setObjectType(ObjectType.FIRE, th.getTextureFromObjectType(ObjectType.FIRE));
+		addToCellMap(fireCell);
+
+		Cell waterCell = new Cell(th.getTexture("grass"), 0, 6);
+		waterCell.setDangerous(true);
+		waterCell.setObjectType(ObjectType.WATER, th.getTextureFromObjectType(ObjectType.WATER));
+		addToCellMap(waterCell);
+
+		Cell goalCell = new Cell (th.getTexture("goal"), 5, 8);
+		goalCell.setIsGoal(true);
+		addToCellMap(goalCell);
 
 		for (int i = 0; i < width * height; i++) {
 			if (!cellMap.containsKey(i)) {

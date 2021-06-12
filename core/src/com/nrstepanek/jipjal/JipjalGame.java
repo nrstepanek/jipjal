@@ -2,7 +2,7 @@ package com.nrstepanek.jipjal;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.nrstepanek.jipjal.game.GameScreen;
+import com.nrstepanek.jipjal.menu.MenuScreen;
 
 public class JipjalGame extends Game {
 	public SpriteBatch batch;
@@ -15,7 +15,7 @@ public class JipjalGame extends Game {
 
 		batch = new SpriteBatch();
 
-		setScreen(new GameScreen(this));
+		setScreen(new MenuScreen(this));
 	}
 
 	@Override

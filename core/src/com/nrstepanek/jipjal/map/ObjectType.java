@@ -5,5 +5,7 @@ public enum ObjectType {
 	BLUE_LOCK,
 	GREEN_LOCK,
 	RED_LOCK,
-	YELLOW_LOCK
+	YELLOW_LOCK,
+	FIRE,
+	WATER
 }

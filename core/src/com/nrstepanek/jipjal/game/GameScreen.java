@@ -25,7 +25,7 @@ public class GameScreen implements Screen {
 		// gameMap = new GameMap(32, 32, textureHolder);
 		gameMap = new JipjalMap(game.textureHolder);
 
-		logic = new GameLogic(player, gameMap);
+		logic = new GameLogic(player, gameMap, game);
 	}
 
 	@Override
@@ -63,7 +63,6 @@ public class GameScreen implements Screen {
 
 	@Override
 	public void hide() {
-		// TODO Auto-generated method stub
 		Gdx.input.setInputProcessor(null);
 	}
 

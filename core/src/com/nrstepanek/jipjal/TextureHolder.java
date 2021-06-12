@@ -54,6 +54,10 @@ public class TextureHolder {
 				return getTexture("red_lock");
 			case GREEN_LOCK:
 				return getTexture("green_lock");
+			case FIRE:
+				return getTexture("fire");
+			case WATER:
+				return getTexture("water");
 			case NONE:
 				return null;
 		}

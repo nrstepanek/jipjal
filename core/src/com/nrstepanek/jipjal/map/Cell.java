@@ -7,6 +7,9 @@ import com.nrstepanek.jipjal.GridDrawable;
 public class Cell extends GridDrawable {
 
     private boolean solid;
+	private boolean dangerous;
+	private boolean isGoal;
+
 	private ObjectType objectType;
 
 	private Sprite groundSprite;
@@ -17,6 +20,8 @@ public class Cell extends GridDrawable {
         super(groundTexture, x, y);
         this.solid = false;
 		this.objectType = ObjectType.NONE;
+		this.dangerous = false;
+		this.isGoal = false;
     }
 
     public boolean getSolid() {
@@ -26,6 +31,22 @@ public class Cell extends GridDrawable {
     public void setSolid(boolean solid) {
         this.solid = solid;
     }
+
+	public boolean getDangerous() {
+		return this.dangerous;
+	}
+
+	public void setDangerous(boolean dangerous) {
+		this.dangerous = dangerous;
+	}
+
+	public boolean getIsGoal() {
+		return this.isGoal;
+	}
+
+	public void setIsGoal(boolean isGoal) {
+		this.isGoal = isGoal;
+	}
 
 	public ObjectType getObjectType() {
 		return this.objectType;
