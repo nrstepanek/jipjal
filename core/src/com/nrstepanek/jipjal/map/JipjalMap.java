@@ -92,10 +92,10 @@ public class JipjalMap implements Serializable {
 		addToCellMap(goalCell);
 
 		Cell iceCell = new Cell(th.getTexture("ice"), 3, 1);
-		iceCell.setIsIce(true);
+		iceCell.setGroundType(GroundTypeEnum.ICE);
 		addToCellMap(iceCell);
 		Cell iceCell2 = new Cell(th.getTexture("ice"), 4, 1);
-		iceCell2.setIsIce(true);
+		iceCell2.setGroundType(GroundTypeEnum.ICE);
 		addToCellMap(iceCell2);
 
 		for (int i = 0; i < width * height; i++) {

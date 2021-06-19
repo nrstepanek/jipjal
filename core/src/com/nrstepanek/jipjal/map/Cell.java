@@ -14,6 +14,8 @@ public class Cell extends GridDrawable {
 
 	private ObjectTypeEnum objectType;
 
+	private GroundTypeEnum groundType;
+
 	private Sprite groundSprite;
 
 	private Item item;
@@ -63,12 +65,12 @@ public class Cell extends GridDrawable {
 		this.isPlayerStart = isPlayerStart;
 	}
 
-	public boolean getIsIce() {
-		return this.isIce;
+	public GroundTypeEnum getGroundType() {
+		return this.groundType;
 	}
 
-	public void setIsIce(boolean isIce) {
-		this.isIce = isIce;
+	public void setGroundType(GroundTypeEnum groundType) {
+		this.groundType = groundType;
 	}
 
 	public void setObjectType(ObjectTypeEnum objectType, Texture texture) {

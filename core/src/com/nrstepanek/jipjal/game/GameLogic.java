@@ -1,6 +1,7 @@
 package com.nrstepanek.jipjal.game;
 
 import com.nrstepanek.jipjal.map.Cell;
+import com.nrstepanek.jipjal.map.GroundTypeEnum;
 import com.nrstepanek.jipjal.map.JipjalMap;
 import com.nrstepanek.jipjal.map.ItemTypeEnum;
 import com.nrstepanek.jipjal.map.ObjectTypeEnum;
@@ -79,7 +80,7 @@ public class GameLogic {
 
 	public void iceLogic(int oldX, int oldY) {
 		Cell playerCell = gameMap.getCell(player.getX(), player.getY());
-		if (playerCell.getIsIce()) {
+		if (playerCell.getGroundType() == GroundTypeEnum.ICE) {
 			player.setSlipping(true);
 			player.setSlipDirection(getDirectionFromCoords(oldX, oldY, player.getX(), player.getY()));
 		} else {

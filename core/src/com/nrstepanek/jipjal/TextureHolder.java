@@ -9,6 +9,7 @@ import java.util.HashMap;
 import com.badlogic.gdx.graphics.Texture;
 import com.nrstepanek.jipjal.map.ItemTypeEnum;
 import com.nrstepanek.jipjal.map.ObjectTypeEnum;
+import com.nrstepanek.jipjal.map.GroundTypeEnum;
 
 public class TextureHolder {
 
@@ -28,6 +29,27 @@ public class TextureHolder {
     public Texture getTexture(String textureName) {
         return textureMap.get(textureName);
     }
+
+	public Texture getTextureFromGroundType(GroundTypeEnum groundType) {
+		switch (groundType) {
+			case GRASS:
+				return getTexture("grass");
+			case ICE:
+				return getTexture("ice");
+			case FORCE_LEFT:
+				return getTexture("force_left");
+			case FORCE_UP:
+				return getTexture("force_up");
+			case FORCE_RIGHT:
+				return getTexture("force_right");
+			case FORCE_DOWN:
+				return getTexture("force_down");
+			case NONE:
+				return null;
+		}
+
+		return null;
+	}
 
 	public Texture getTextureFromItemType(ItemTypeEnum itemType) {
 		switch (itemType) {
