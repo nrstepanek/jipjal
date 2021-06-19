@@ -13,14 +13,16 @@ public class GameInputProcessor extends InputAdapter {
 
     @Override
     public boolean keyDown(int keycode) {
-        if (keycode == Keys.LEFT)
-            logic.playerMove(0);
-        else if (keycode == Keys.RIGHT)
-            logic.playerMove(2);
-        else if (keycode == Keys.UP)
-            logic.playerMove(1);
-        else if (keycode == Keys.DOWN)
-            logic.playerMove(3);
+		if (logic.canMove()) {
+        	if (keycode == Keys.LEFT)
+            	logic.playerMove(DirectionEnum.LEFT);
+        	else if (keycode == Keys.RIGHT)
+            	logic.playerMove(DirectionEnum.RIGHT);
+        	else if (keycode == Keys.UP)
+            	logic.playerMove(DirectionEnum.UP);
+        	else if (keycode == Keys.DOWN)
+            	logic.playerMove(DirectionEnum.DOWN);
+		}
 
         return true;
     }

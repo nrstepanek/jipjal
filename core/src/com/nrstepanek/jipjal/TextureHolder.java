@@ -7,8 +7,8 @@ import java.util.Map;
 import java.util.HashMap;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.nrstepanek.jipjal.map.ItemType;
-import com.nrstepanek.jipjal.map.ObjectType;
+import com.nrstepanek.jipjal.map.ItemTypeEnum;
+import com.nrstepanek.jipjal.map.ObjectTypeEnum;
 
 public class TextureHolder {
 
@@ -29,7 +29,7 @@ public class TextureHolder {
         return textureMap.get(textureName);
     }
 
-	public Texture getTextureFromItemType(ItemType itemType) {
+	public Texture getTextureFromItemType(ItemTypeEnum itemType) {
 		switch (itemType) {
 			case BLUE_KEY:
 				return getTexture("blue_key");
@@ -44,7 +44,7 @@ public class TextureHolder {
 		return null;
 	}
 
-	public Texture getTextureFromObjectType(ObjectType objectType) {
+	public Texture getTextureFromObjectType(ObjectTypeEnum objectType) {
 		switch (objectType) {
 			case BLUE_LOCK:
 				return getTexture("blue_lock");

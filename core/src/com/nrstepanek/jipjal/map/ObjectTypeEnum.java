@@ -1,6 +1,6 @@
 package com.nrstepanek.jipjal.map;
 
-public enum ObjectType {
+public enum ObjectTypeEnum {
 	NONE,
 	BLUE_LOCK,
 	GREEN_LOCK,

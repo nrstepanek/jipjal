@@ -3,7 +3,6 @@ package com.nrstepanek.jipjal.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.nrstepanek.jipjal.JipjalGame;
 import com.nrstepanek.jipjal.map.JipjalMap;
@@ -19,6 +18,7 @@ public class GameScreen implements Screen {
 
 	GameLogic logic;
 
+	float timeSinceLastUpdate;
 
 	public GameScreen(JipjalGame game) {
 		this.game = game;
@@ -30,6 +30,8 @@ public class GameScreen implements Screen {
 
 		logic = new GameLogic(player, gameMap, this);
 		updateCamera();
+		
+		timeSinceLastUpdate = 0.0f;
 	}
 
 	@Override
@@ -40,6 +42,12 @@ public class GameScreen implements Screen {
 
 	@Override
 	public void render(float delta) {
+		timeSinceLastUpdate += delta;
+		if (timeSinceLastUpdate >= 0.1f) {
+			logic.updateEntities();
+			timeSinceLastUpdate -= 0.1f;
+		}
+
 		ScreenUtils.clear(0.9f, 0.9f, 1, 1);
 
 		game.batch.setProjectionMatrix(game.camera.combined);

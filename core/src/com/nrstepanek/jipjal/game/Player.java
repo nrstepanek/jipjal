@@ -3,24 +3,25 @@ package com.nrstepanek.jipjal.game;
 import com.badlogic.gdx.graphics.Texture;
 import com.nrstepanek.jipjal.GridDrawable;
 import com.nrstepanek.jipjal.map.Item;
-import com.nrstepanek.jipjal.map.ItemType;
+import com.nrstepanek.jipjal.map.ItemTypeEnum;
 
 public class Player extends GridDrawable {
 
 	Inventory inventory;
 
 	private boolean slipping;
+	private DirectionEnum slipDirection;
 
     public Player(Texture t, int x, int y) {
         super(t, x, y);
 		this.inventory = new Inventory();
     }
 
-	public boolean hasItem(ItemType itemType) {
+	public boolean hasItem(ItemTypeEnum itemType) {
 		return inventory.hasItem(itemType);
 	}
 
-	public int getItemIndex(ItemType itemType) {
+	public int getItemIndex(ItemTypeEnum itemType) {
 		return inventory.getItemIndex(itemType);
 	}
 
@@ -34,5 +35,13 @@ public class Player extends GridDrawable {
 
 	public void setSlipping(boolean slipping) {
 		this.slipping = slipping;
+	}
+
+	public DirectionEnum getSlipDirection() {
+		return this.slipDirection;
+	}
+
+	public void setSlipDirection(DirectionEnum slipDirection) {
+		this.slipDirection = slipDirection;
 	}
 }

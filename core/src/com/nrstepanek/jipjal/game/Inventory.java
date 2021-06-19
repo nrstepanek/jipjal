@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.nrstepanek.jipjal.map.Item;
-import com.nrstepanek.jipjal.map.ItemType;
+import com.nrstepanek.jipjal.map.ItemTypeEnum;
 
 public class Inventory {
 
@@ -22,7 +22,7 @@ public class Inventory {
 		this.items.add(item);
 	}
 
-	public boolean hasItem(ItemType itemType) {
+	public boolean hasItem(ItemTypeEnum itemType) {
 		for (Item item : items) {
 			if (item.getItemType() == itemType)
 				return true;
@@ -31,7 +31,7 @@ public class Inventory {
 		return false;
 	}
 
-	public int getItemIndex(ItemType itemType) {
+	public int getItemIndex(ItemTypeEnum itemType) {
 		for (int i = 0; i < items.size(); i++) {
 			if (items.get(i).getItemType() == itemType)
 				return i;

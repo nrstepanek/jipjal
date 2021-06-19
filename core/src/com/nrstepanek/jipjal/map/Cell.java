@@ -12,7 +12,7 @@ public class Cell extends GridDrawable {
 	private boolean isPlayerStart;
 	private boolean isIce;
 
-	private ObjectType objectType;
+	private ObjectTypeEnum objectType;
 
 	private Sprite groundSprite;
 
@@ -21,7 +21,7 @@ public class Cell extends GridDrawable {
     public Cell(Texture groundTexture, int x, int y) {
         super(groundTexture, x, y);
         this.solid = false;
-		this.objectType = ObjectType.NONE;
+		this.objectType = ObjectTypeEnum.NONE;
 		this.dangerous = false;
 		this.isGoal = false;
 		this.isPlayerStart = false;
@@ -51,7 +51,7 @@ public class Cell extends GridDrawable {
 		this.isGoal = isGoal;
 	}
 
-	public ObjectType getObjectType() {
+	public ObjectTypeEnum getObjectType() {
 		return this.objectType;
 	}
 
@@ -71,14 +71,14 @@ public class Cell extends GridDrawable {
 		this.isIce = isIce;
 	}
 
-	public void setObjectType(ObjectType objectType, Texture texture) {
+	public void setObjectType(ObjectTypeEnum objectType, Texture texture) {
 		this.objectType = objectType;
 		this.groundSprite = this.getSprite();
 		this.setSprite(new Sprite(texture));
 	}
 
 	public void destroyObject() {
-		this.objectType = ObjectType.NONE;
+		this.objectType = ObjectTypeEnum.NONE;
 		this.setSprite(this.groundSprite);
 		this.solid = false;
 	}

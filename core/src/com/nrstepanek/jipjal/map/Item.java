@@ -2,13 +2,13 @@ package com.nrstepanek.jipjal.map;
 
 public class Item {
 
-	ItemType itemType;
+	ItemTypeEnum itemType;
 
-	public Item(ItemType itemType) {
+	public Item(ItemTypeEnum itemType) {
 		this.itemType = itemType;
 	}
 
-	public ItemType getItemType() {
+	public ItemTypeEnum getItemType() {
 		return this.itemType;
 	}
 }

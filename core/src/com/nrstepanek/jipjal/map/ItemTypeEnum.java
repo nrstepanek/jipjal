@@ -1,6 +1,6 @@
 package com.nrstepanek.jipjal.map;
 
-public enum ItemType {
+public enum ItemTypeEnum {
 	BLUE_KEY,
 	GREEN_KEY,
 	RED_KEY,

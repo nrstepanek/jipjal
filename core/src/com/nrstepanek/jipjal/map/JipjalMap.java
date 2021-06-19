@@ -68,23 +68,23 @@ public class JipjalMap implements Serializable {
 		addToCellMap(cell3);
 
 		Cell cell4 = new Cell(th.getTexture("grass"), 5, 5);
-		Item blueKeyItem = new Item(ItemType.BLUE_KEY);
-		cell4.addItem(blueKeyItem, th.getTextureFromItemType(ItemType.BLUE_KEY));
+		Item blueKeyItem = new Item(ItemTypeEnum.BLUE_KEY);
+		cell4.addItem(blueKeyItem, th.getTextureFromItemType(ItemTypeEnum.BLUE_KEY));
 		addToCellMap(cell4);
 
 		Cell cell5 = new Cell(th.getTexture("grass"), 1, 5);
 		cell5.setSolid(true);
-		cell5.setObjectType(ObjectType.BLUE_LOCK, th.getTextureFromObjectType(ObjectType.BLUE_LOCK));
+		cell5.setObjectType(ObjectTypeEnum.BLUE_LOCK, th.getTextureFromObjectType(ObjectTypeEnum.BLUE_LOCK));
 		addToCellMap(cell5);
 
 		Cell fireCell = new Cell(th.getTexture("grass"), 1, 6);
 		fireCell.setDangerous(true);
-		fireCell.setObjectType(ObjectType.FIRE, th.getTextureFromObjectType(ObjectType.FIRE));
+		fireCell.setObjectType(ObjectTypeEnum.FIRE, th.getTextureFromObjectType(ObjectTypeEnum.FIRE));
 		addToCellMap(fireCell);
 
 		Cell waterCell = new Cell(th.getTexture("grass"), 0, 6);
 		waterCell.setDangerous(true);
-		waterCell.setObjectType(ObjectType.WATER, th.getTextureFromObjectType(ObjectType.WATER));
+		waterCell.setObjectType(ObjectTypeEnum.WATER, th.getTextureFromObjectType(ObjectTypeEnum.WATER));
 		addToCellMap(waterCell);
 
 		Cell goalCell = new Cell (th.getTexture("goal"), 5, 8);
