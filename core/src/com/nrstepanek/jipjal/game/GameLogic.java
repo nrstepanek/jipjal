@@ -20,12 +20,12 @@ public class GameLogic {
 
 	// Returns whether the game is awaiting input.
 	public boolean canMove() {
-		return !player.getSlipping();
+		return !player.getSliding();
 	}
 
 	// Updates time based state for all entities in the game.
 	public void updateEntities() {
-		if (player.getSlipping()) {
+		if (player.getSliding()) {
 			playerMove(player.getSlipDirection());
 		}
 	}
@@ -74,18 +74,34 @@ public class GameLogic {
 		int oldX = player.getX();
 		int oldY = player.getY();
 		player.setPosition(newX, newY);
-		iceLogic(oldX, oldY);
+		slidingLogic(oldX, oldY);
 		gameScreen.updateCamera();
 	}
 
-	public void iceLogic(int oldX, int oldY) {
+	public void slidingLogic(int oldX, int oldY) {
 		Cell playerCell = gameMap.getCell(player.getX(), player.getY());
 		if (playerCell.getGroundType() == GroundTypeEnum.ICE) {
-			player.setSlipping(true);
+			player.setSliding(true);
+			player.setForceSliding(false);
 			player.setSlipDirection(getDirectionFromCoords(oldX, oldY, player.getX(), player.getY()));
+		} else if (playerCell.isForceTile()) {
+			player.setSliding(true);
+			player.setForceSliding(true);
+			player.setSlipDirection(getDirectionFromForceTile(playerCell.getGroundType()));
 		} else {
-			player.setSlipping(false);
-			player.setSlipDirection(DirectionEnum.NONE);
+			if (player.getForceSliding()) {
+				Cell nextCell = getCellInDirection(player.getX(), player.getY(), player.getSlipDirection());
+				if (nextCell.getSolid()) {
+					player.setSliding(false);
+					player.setForceSliding(false);
+					player.setSlipDirection(DirectionEnum.NONE);
+				}
+			}
+			else {
+				player.setSliding(false);
+				player.setForceSliding(false);
+				player.setSlipDirection(DirectionEnum.NONE);
+			}
 		}
 	}
 
@@ -143,5 +159,39 @@ public class GameLogic {
 		}
 
 		return DirectionEnum.NONE;
+	}
+
+	public DirectionEnum getDirectionFromForceTile(GroundTypeEnum groundType) {
+		if (groundType == GroundTypeEnum.FORCE_DOWN) {
+			return DirectionEnum.DOWN;
+		}
+		if (groundType == GroundTypeEnum.FORCE_UP) {
+			return DirectionEnum.UP;
+		}
+		if (groundType == GroundTypeEnum.FORCE_RIGHT) {
+			return DirectionEnum.RIGHT;
+		}
+		if (groundType == GroundTypeEnum.FORCE_LEFT) {
+			return DirectionEnum.LEFT;
+		}
+
+		return DirectionEnum.NONE;
+	}
+
+	public Cell getCellInDirection(int x, int y, DirectionEnum direction) {
+		if (direction == DirectionEnum.RIGHT) {
+			x += 1;
+		}
+		if (direction == DirectionEnum.LEFT) {
+			x -= 1;
+		}
+		if (direction == DirectionEnum.DOWN) {
+			y -= 1;
+		}
+		if (direction == DirectionEnum.UP) {
+			y += 1;
+		}
+
+		return gameMap.getCell(x, y);
 	}
 }

@@ -9,7 +9,8 @@ public class Player extends GridDrawable {
 
 	Inventory inventory;
 
-	private boolean slipping;
+	private boolean sliding;
+	private boolean forceSliding;
 	private DirectionEnum slipDirection;
 
     public Player(Texture t, int x, int y) {
@@ -29,12 +30,20 @@ public class Player extends GridDrawable {
 		return inventory.removeItemAtIndex(index);
 	}
 
-	public boolean getSlipping() {
-		return this.slipping;
+	public boolean getSliding() {
+		return this.sliding;
 	}
 
-	public void setSlipping(boolean slipping) {
-		this.slipping = slipping;
+	public void setSliding(boolean sliding) {
+		this.sliding = sliding;
+	}
+
+	public boolean getForceSliding() {
+		return this.forceSliding;
+	}
+
+	public void setForceSliding(boolean forceSliding) {
+		this.forceSliding = forceSliding;
 	}
 
 	public DirectionEnum getSlipDirection() {

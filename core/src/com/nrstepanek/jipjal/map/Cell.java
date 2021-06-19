@@ -10,7 +10,6 @@ public class Cell extends GridDrawable {
 	private boolean dangerous;
 	private boolean isGoal;
 	private boolean isPlayerStart;
-	private boolean isIce;
 
 	private ObjectTypeEnum objectType;
 
@@ -71,6 +70,13 @@ public class Cell extends GridDrawable {
 
 	public void setGroundType(GroundTypeEnum groundType) {
 		this.groundType = groundType;
+	}
+
+	public boolean isForceTile() {
+		return this.groundType == GroundTypeEnum.FORCE_DOWN ||
+			   this.groundType == GroundTypeEnum.FORCE_LEFT ||
+			   this.groundType == GroundTypeEnum.FORCE_UP ||
+			   this.groundType == GroundTypeEnum.FORCE_RIGHT;
 	}
 
 	public void setObjectType(ObjectTypeEnum objectType, Texture texture) {
