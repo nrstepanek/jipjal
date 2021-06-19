@@ -98,6 +98,23 @@ public class JipjalMap implements Serializable {
 		iceCell2.setGroundType(GroundTypeEnum.ICE);
 		addToCellMap(iceCell2);
 
+		Cell forceUpCell = new Cell(th.getTexture("force_up"), 5, 0);
+		forceUpCell.setGroundType(GroundTypeEnum.FORCE_UP);
+		addToCellMap(forceUpCell);
+		Cell forceLeftCell = new Cell(th.getTexture("force_left"), 9, 0);
+		forceLeftCell.setGroundType(GroundTypeEnum.FORCE_LEFT);
+		addToCellMap(forceLeftCell);
+		Cell forceDownCell = new Cell(th.getTexture("force_down"), 9, 4);
+		forceDownCell.setGroundType(GroundTypeEnum.FORCE_DOWN);
+		addToCellMap(forceDownCell);
+		Cell forceRightCell = new Cell(th.getTexture("force_right"), 6, 4);
+		forceRightCell.setGroundType(GroundTypeEnum.FORCE_RIGHT);
+		addToCellMap(forceRightCell);
+
+		Cell forceLeftCell2 = new Cell(th.getTexture("force_left"), 8, 5);
+		forceLeftCell2.setGroundType(GroundTypeEnum.FORCE_LEFT);
+		addToCellMap(forceLeftCell2);
+
 		for (int i = 0; i < width * height; i++) {
 			if (!cellMap.containsKey(i)) {
 				Cell newCell = new Cell(th.getTexture("grass"), i % width, (int) Math.floor(i / height));
