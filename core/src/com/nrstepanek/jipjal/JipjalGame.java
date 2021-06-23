@@ -16,7 +16,7 @@ public class JipjalGame extends Game {
 	public void create () {
 		textureHolder = new TextureHolder();
 		batch = new SpriteBatch();
-		camera = new OrthographicCamera(640, 320);
+		camera = new OrthographicCamera(Configuration.RESOLUTION_WIDTH, Configuration.RESOLUTION_HEIGHT);
 
 		setScreen(new MenuScreen(this));
 	}
