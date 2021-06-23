@@ -43,6 +43,11 @@ public class GameLogic {
         else if (direction == DirectionEnum.DOWN)
             newY--;
 
+		// Don't do anything if the new cell is out of bounds.
+		if (!gameMap.isWithinBounds(newX, newY)) {
+			return ;
+		}
+
 		Cell newCell = gameMap.getCell(newX, newY);
 
 		if (newCell.hasItem()) {

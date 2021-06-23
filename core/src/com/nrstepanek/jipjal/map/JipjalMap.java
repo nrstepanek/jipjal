@@ -148,4 +148,10 @@ public class JipjalMap implements Serializable {
     public int getHeight() {
         return this.height;
     }
+
+	public boolean isWithinBounds(int x, int y) {
+		if (x < this.width && x >= 0 && y < this.height && y >= 0)
+			return true;
+		return false;
+	}
 }
