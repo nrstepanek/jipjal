@@ -2,6 +2,7 @@ package com.nrstepanek.jipjal.game;
 
 import com.nrstepanek.jipjal.map.Cell;
 import com.nrstepanek.jipjal.map.GroundTypeEnum;
+import com.nrstepanek.jipjal.map.Item;
 import com.nrstepanek.jipjal.map.JipjalMap;
 import com.nrstepanek.jipjal.map.ItemTypeEnum;
 import com.nrstepanek.jipjal.map.ObjectTypeEnum;
@@ -51,7 +52,12 @@ public class GameLogic {
 		Cell newCell = gameMap.getCell(newX, newY);
 
 		if (newCell.hasItem()) {
-			player.inventory.addItem(newCell.getItem());
+			Item item = newCell.getItem();
+			if (item.getItemType() == ItemTypeEnum.CHIP) {
+				player.getInventory().addChip();
+			} else {
+				player.getInventory().addItem(item);
+			}
 			newCell.removeItem();
 		}
 
@@ -68,8 +74,10 @@ public class GameLogic {
 		if (!newCell.getSolid()) {
 			movePlayer(newX, newY);
 		} else {
-			// DOOR CHECK BEGIN
 			if (doorLogic(newCell)) {
+				movePlayer(newX, newY);
+			}
+			else if (socketLogic(newCell)) {
 				movePlayer(newX, newY);
 			}
 		}
@@ -144,6 +152,17 @@ public class GameLogic {
 			player.removeItemAtIndex(keyIndex);
 			newCell.destroyObject();
 			return true;
+		}
+
+		return false;
+	}
+
+	private boolean socketLogic(Cell newCell) {
+		if (newCell.getObjectType() == ObjectTypeEnum.SOCKET) {
+			if (player.getInventory().getChips() >= gameMap.getSocketThreshold()) {
+				newCell.destroyObject();
+				return true;
+			}
 		}
 
 		return false;

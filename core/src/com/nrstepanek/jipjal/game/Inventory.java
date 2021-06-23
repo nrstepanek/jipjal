@@ -9,6 +9,7 @@ import com.nrstepanek.jipjal.map.ItemTypeEnum;
 public class Inventory {
 
 	List<Item> items;
+	int chips;
 
 	public Inventory() {
 		this.items = new ArrayList<>();
@@ -42,5 +43,17 @@ public class Inventory {
 
 	public Item removeItemAtIndex(int index) {
 		return this.items.remove(index);
+	}
+
+	public int getChips() {
+		return this.chips;
+	}
+
+	public void setChips(int chips) {
+		this.chips = chips;
+	}
+
+	public void addChip() {
+		this.chips += 1;
 	}
 }

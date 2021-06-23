@@ -7,7 +7,7 @@ import com.nrstepanek.jipjal.map.ItemTypeEnum;
 
 public class Player extends GridDrawable {
 
-	Inventory inventory;
+	private Inventory inventory;
 
 	private boolean sliding;
 	private boolean forceSliding;
@@ -28,6 +28,10 @@ public class Player extends GridDrawable {
 
 	public Item removeItemAtIndex(int index) {
 		return inventory.removeItemAtIndex(index);
+	}
+
+	public Inventory getInventory() {
+		return this.inventory;
 	}
 
 	public boolean getSliding() {

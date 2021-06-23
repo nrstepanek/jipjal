@@ -15,6 +15,8 @@ public class JipjalMap implements Serializable {
     private int width;
     private int height;
 
+	private int socketThreshold;
+
     private Map<Integer, Cell> cellMap;
 
     private TextureHolder th;
@@ -32,6 +34,7 @@ public class JipjalMap implements Serializable {
 		this.height = 10;
 		this.th = textureHolder;
 		this.cellMap = new HashMap<>();
+		this.socketThreshold = 2;
 		generateTestMap();
 	}
 
@@ -121,6 +124,21 @@ public class JipjalMap implements Serializable {
 				addToCellMap(newCell);
 			}
 		}
+
+		Cell chipCell = new Cell(th.getTexture("grass"), 1, 8);
+		Item chip = new Item(ItemTypeEnum.CHIP);
+		chipCell.addItem(chip, th.getTextureFromItemType(ItemTypeEnum.CHIP));
+		addToCellMap(chipCell);
+
+		Cell chipCell2 = new Cell(th.getTexture("grass"), 1, 9);
+		Item chip2 = new Item(ItemTypeEnum.CHIP);
+		chipCell2.addItem(chip2, th.getTextureFromItemType(ItemTypeEnum.CHIP));
+		addToCellMap(chipCell2);
+
+		Cell socketCell = new Cell(th.getTexture("grass"), 4, 8);
+		socketCell.setSolid(true);
+		socketCell.setObjectType(ObjectTypeEnum.SOCKET, th.getTextureFromObjectType(ObjectTypeEnum.SOCKET));
+		addToCellMap(socketCell);
 	}
 
 	public void addToCellMap(Cell cell) {
@@ -153,5 +171,13 @@ public class JipjalMap implements Serializable {
 		if (x < this.width && x >= 0 && y < this.height && y >= 0)
 			return true;
 		return false;
+	}
+
+	public int getSocketThreshold() {
+		return this.socketThreshold;
+	}
+	
+	public void setSocketThreshold(int socketThreshold) {
+		this.socketThreshold = socketThreshold;
 	}
 }

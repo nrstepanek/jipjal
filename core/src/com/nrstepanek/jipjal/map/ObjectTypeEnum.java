@@ -7,5 +7,6 @@ public enum ObjectTypeEnum {
 	RED_LOCK,
 	YELLOW_LOCK,
 	FIRE,
-	WATER
+	WATER,
+	SOCKET
 }

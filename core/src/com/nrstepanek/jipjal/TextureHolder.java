@@ -53,6 +53,8 @@ public class TextureHolder {
 
 	public Texture getTextureFromItemType(ItemTypeEnum itemType) {
 		switch (itemType) {
+			case CHIP:
+				return getTexture("chip");
 			case BLUE_KEY:
 				return getTexture("blue_key");
 			case YELLOW_KEY:
@@ -80,6 +82,8 @@ public class TextureHolder {
 				return getTexture("fire");
 			case WATER:
 				return getTexture("water");
+			case SOCKET:
+				return getTexture("socket");
 			case NONE:
 				return null;
 		}
