@@ -1,7 +1,9 @@
 package com.nrstepanek.jipjal.map;
 
 import java.util.Map;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Random;
 import java.io.Serializable;
 import java.lang.Math;
@@ -9,6 +11,7 @@ import java.lang.Math;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.nrstepanek.jipjal.TextureHolder;
+import com.nrstepanek.jipjal.game.Monster;
 
 public class JipjalMap implements Serializable {
 
@@ -19,6 +22,8 @@ public class JipjalMap implements Serializable {
 
     private Map<Integer, Cell> cellMap;
 
+	private List<Monster> monsters;
+
     private TextureHolder th;
 
     public JipjalMap(int width, int height, TextureHolder textureHolder) {
@@ -26,6 +31,8 @@ public class JipjalMap implements Serializable {
         this.height = height;
         this.th = textureHolder;
         this.cellMap = new HashMap<>();
+		this.socketThreshold = 1;
+		this.monsters = new ArrayList<>();
         randomGenerate();
     }
 
@@ -35,6 +42,7 @@ public class JipjalMap implements Serializable {
 		this.th = textureHolder;
 		this.cellMap = new HashMap<>();
 		this.socketThreshold = 2;
+		this.monsters = new ArrayList<>();
 		generateTestMap();
 	}
 
@@ -179,5 +187,13 @@ public class JipjalMap implements Serializable {
 	
 	public void setSocketThreshold(int socketThreshold) {
 		this.socketThreshold = socketThreshold;
+	}
+
+	public List<Monster> getMonsters() {
+		return this.monsters;
+	}
+
+	public void addMonster(Monster monster) {
+		this.monsters.add(monster);
 	}
 }
