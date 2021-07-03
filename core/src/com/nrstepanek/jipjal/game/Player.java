@@ -18,6 +18,10 @@ public class Player extends GridDrawable {
 		this.inventory = new Inventory();
     }
 
+	public void update() {
+		
+	}
+
 	public boolean hasItem(ItemTypeEnum itemType) {
 		return inventory.hasItem(itemType);
 	}

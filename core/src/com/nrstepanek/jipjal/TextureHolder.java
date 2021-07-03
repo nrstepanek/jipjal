@@ -22,8 +22,10 @@ public class TextureHolder {
 		FileHandle dirHandle = Gdx.files.internal("./");
 
 		for (FileHandle entry : dirHandle.list()) {
-			Texture t = new Texture(Gdx.files.internal(entry.name()));
-			textureMap.put(entry.name().substring(0, entry.name().length() - 4), t);
+			if (!entry.isDirectory()) {
+				Texture t = new Texture(Gdx.files.internal(entry.name()));
+				textureMap.put(entry.name().substring(0, entry.name().length() - 4), t);
+			}
 		}
     }
 

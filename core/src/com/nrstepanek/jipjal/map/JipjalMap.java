@@ -19,6 +19,9 @@ public class JipjalMap implements Serializable {
     private int width;
     private int height;
 
+	private int playerStartX;
+	private int playerStartY;
+
 	private int socketThreshold;
 
     private Map<Integer, Cell> cellMap;
@@ -27,14 +30,15 @@ public class JipjalMap implements Serializable {
 
     private TextureHolder th;
 
-    public JipjalMap(int width, int height, TextureHolder textureHolder) {
+    public JipjalMap(int width, int height, TextureHolder textureHolder, boolean random) {
         this.width = width;
         this.height = height;
         this.th = textureHolder;
         this.cellMap = new HashMap<>();
-		this.socketThreshold = 1;
 		this.monsters = new ArrayList<>();
-        randomGenerate();
+		if (random) {
+        	randomGenerate();
+		}
     }
 
 	public JipjalMap(TextureHolder textureHolder) {
@@ -151,6 +155,9 @@ public class JipjalMap implements Serializable {
 
 		Monster bug = new Monster(th.getTextureFromMonsterType(MonsterTypeEnum.BUG), 4, 4, MonsterTypeEnum.BUG);
 		addMonster(bug);
+
+		this.playerStartX = 1;
+		this.playerStartY = 1;
 	}
 
 	public void addToCellMap(Cell cell) {
@@ -162,6 +169,16 @@ public class JipjalMap implements Serializable {
             cell.getSprite().draw(batch);
         }
     }
+
+	// Fills in all empty cell locations with grass cells.
+	public void fillIn() {
+		for (int i = 0; i < width * height; i++) {
+			if (!cellMap.containsKey(i)) {
+				Cell newCell = new Cell(th.getTexture("grass"), i % width, (int) Math.floor(i / height));
+				addToCellMap(newCell);
+			}
+		}
+	}
 
 	public int getCellLoc(Cell cell) {
 		return cell.getX() + cell.getY() * this.width;
@@ -199,5 +216,21 @@ public class JipjalMap implements Serializable {
 
 	public void addMonster(Monster monster) {
 		this.monsters.add(monster);
+	}
+
+	public void setPlayerStartX(int x) {
+		this.playerStartX = x;
+	}
+
+	public int getPlayerStartX() {
+		return this.playerStartX;
+	}
+
+	public void setPlayerStartY(int y) {
+		this.playerStartY = y;
+	}
+
+	public int getPlayerStartY() {
+		return this.playerStartY;
 	}
 }

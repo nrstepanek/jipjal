@@ -1,11 +1,14 @@
 package com.nrstepanek.jipjal.game;
 
+import java.io.FileNotFoundException;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.nrstepanek.jipjal.JipjalGame;
 import com.nrstepanek.jipjal.map.JipjalMap;
+import com.nrstepanek.jipjal.map.MapLoader;
 import com.nrstepanek.jipjal.menu.MenuScreen;
 
 public class GameScreen implements Screen {
@@ -23,10 +26,17 @@ public class GameScreen implements Screen {
 	public GameScreen(JipjalGame game) {
 		this.game = game;
 
-		player = new Player(game.textureHolder.getTexture("player"), 1, 1);
+		MapLoader loader = new MapLoader(game.textureHolder);
 
 		// gameMap = new GameMap(32, 32, textureHolder);
-		gameMap = new JipjalMap(game.textureHolder);
+		// gameMap = new JipjalMap(game.textureHolder);
+		try {
+			gameMap = loader.loadFromFile("level_1.json");
+		} catch(FileNotFoundException fnfe) {
+			System.out.println("ERROR: Could not find map file.");
+		}
+
+		player = new Player(game.textureHolder.getTexture("player"), gameMap.getPlayerStartX(), gameMap.getPlayerStartY());
 
 		logic = new GameLogic(player, gameMap, this);
 		updateCamera();
