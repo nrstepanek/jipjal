@@ -218,6 +218,16 @@ public class JipjalMap implements Serializable {
 		this.monsters.add(monster);
 	}
 
+	// Check if the cell at (x,y) has a monster.
+	public boolean hasMonster(int x, int y) {
+		for (Monster monster : monsters) {
+			if (monster.getX() == x && monster.getY() == y)
+				return true;
+		}
+
+		return false;
+	}
+
 	public void setPlayerStartX(int x) {
 		this.playerStartX = x;
 	}

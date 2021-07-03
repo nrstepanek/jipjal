@@ -12,6 +12,8 @@ public final class Configuration {
 
 	public static final float SLIDE_SPEED = 0.1f;
 
+	public static final String GAME_MODE = "test";
+
     private Configuration() {}
 
 }

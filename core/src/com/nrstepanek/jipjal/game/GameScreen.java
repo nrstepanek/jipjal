@@ -6,6 +6,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.nrstepanek.jipjal.Configuration;
 import com.nrstepanek.jipjal.JipjalGame;
 import com.nrstepanek.jipjal.map.JipjalMap;
 import com.nrstepanek.jipjal.map.MapLoader;
@@ -29,11 +30,15 @@ public class GameScreen implements Screen {
 		MapLoader loader = new MapLoader(game.textureHolder);
 
 		// gameMap = new GameMap(32, 32, textureHolder);
-		// gameMap = new JipjalMap(game.textureHolder);
-		try {
-			gameMap = loader.loadFromFile("level_1.json");
-		} catch(FileNotFoundException fnfe) {
-			System.out.println("ERROR: Could not find map file.");
+		if (Configuration.GAME_MODE == "test") {
+			gameMap = new JipjalMap(game.textureHolder);
+		}
+		else {
+			try {
+				gameMap = loader.loadFromFile("level_1.json");
+			} catch(FileNotFoundException fnfe) {
+				System.out.println("ERROR: Could not find map file.");
+			}
 		}
 
 		player = new Player(game.textureHolder.getTexture("player"), gameMap.getPlayerStartX(), gameMap.getPlayerStartY());

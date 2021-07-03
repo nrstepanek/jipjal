@@ -54,6 +54,10 @@ public class GameLogic {
 				gameScreen.updateCamera();
 			}
 		}
+
+		if (checkPlayerMonsterCollission()) {
+			gameScreen.gameOver();
+		}
 	}
 
 	public void playerMove(DirectionEnum direction) {
@@ -88,6 +92,9 @@ public class GameLogic {
 
 		// Check death
 		if (newCell.getDangerous()) {
+			gameScreen.gameOver();
+		}
+		if (gameMap.hasMonster(newX, newY)) {
 			gameScreen.gameOver();
 		}
 
@@ -188,6 +195,15 @@ public class GameLogic {
 				newCell.destroyObject();
 				return true;
 			}
+		}
+
+		return false;
+	}
+
+	public boolean checkPlayerMonsterCollission() {
+		for (Monster monster : gameMap.getMonsters()) {
+			if (player.getX() == monster.getX() && player.getY() == monster.getY())
+				return true;
 		}
 
 		return false;

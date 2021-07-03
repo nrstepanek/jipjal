@@ -66,6 +66,8 @@ public class TextureHolder {
 				return getTexture("red_key");
 			case GREEN_KEY:
 				return getTexture("green_key");
+			case NONE:
+				return null;
 		}
 
 		return null;
