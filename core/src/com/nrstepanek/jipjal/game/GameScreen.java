@@ -42,11 +42,7 @@ public class GameScreen implements Screen {
 
 	@Override
 	public void render(float delta) {
-		timeSinceLastUpdate += delta;
-		if (timeSinceLastUpdate >= 0.1f) {
-			logic.updateEntities();
-			timeSinceLastUpdate -= 0.1f;
-		}
+		logic.updateEntities(delta);
 
 		ScreenUtils.clear(0.9f, 0.9f, 1, 1);
 
@@ -55,6 +51,9 @@ public class GameScreen implements Screen {
 		game.batch.begin();
 		gameMap.drawCells(game.batch);
 		player.getSprite().draw(game.batch);
+		for (Monster monster : gameMap.getMonsters()) {
+			monster.getSprite().draw(game.batch);
+		}
 		game.batch.end();
 	}
 

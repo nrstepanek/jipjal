@@ -12,6 +12,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.nrstepanek.jipjal.TextureHolder;
 import com.nrstepanek.jipjal.game.Monster;
+import com.nrstepanek.jipjal.game.MonsterTypeEnum;
 
 public class JipjalMap implements Serializable {
 
@@ -147,6 +148,9 @@ public class JipjalMap implements Serializable {
 		socketCell.setSolid(true);
 		socketCell.setObjectType(ObjectTypeEnum.SOCKET, th.getTextureFromObjectType(ObjectTypeEnum.SOCKET));
 		addToCellMap(socketCell);
+
+		Monster bug = new Monster(th.getTextureFromMonsterType(MonsterTypeEnum.BUG), 4, 4, MonsterTypeEnum.BUG);
+		addMonster(bug);
 	}
 
 	public void addToCellMap(Cell cell) {

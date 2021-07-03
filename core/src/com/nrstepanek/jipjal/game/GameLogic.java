@@ -1,5 +1,9 @@
 package com.nrstepanek.jipjal.game;
 
+import java.util.List;
+
+import com.nrstepanek.jipjal.Configuration;
+import com.nrstepanek.jipjal.CoordHelper;
 import com.nrstepanek.jipjal.map.Cell;
 import com.nrstepanek.jipjal.map.GroundTypeEnum;
 import com.nrstepanek.jipjal.map.Item;
@@ -13,6 +17,8 @@ public class GameLogic {
 	JipjalMap gameMap;
 	GameScreen gameScreen;
 
+	float timeSinceLastSlideUpdate = 0f;
+
 	public GameLogic(Player player, JipjalMap gameMap, GameScreen gameScreen) {
 		this.player = player;
 		this.gameMap = gameMap;
@@ -25,9 +31,28 @@ public class GameLogic {
 	}
 
 	// Updates time based state for all entities in the game.
-	public void updateEntities() {
-		if (player.getSliding()) {
-			playerMove(player.getSlipDirection());
+	public void updateEntities(float dt) {
+		timeSinceLastSlideUpdate += dt;
+		if (timeSinceLastSlideUpdate >= Configuration.SLIDE_SPEED)
+		{
+			timeSinceLastSlideUpdate -= Configuration.SLIDE_SPEED;
+			if (player.getSliding()) {
+				playerMove(player.getSlipDirection());
+			}
+		}
+
+		List<Monster> monsters = gameMap.getMonsters();
+		for (Monster monster : monsters) {
+			boolean updated = monster.update(dt, this.gameMap);
+
+			if (updated) {
+				int oldX = monster.getX();
+				int oldY = monster.getY();
+				List<Integer> newCoords = CoordHelper.getCoordsFromDirection(oldX, oldY, monster.getFacing());
+				monster.setPosition(newCoords.get(0), newCoords.get(1));
+				// slidingLogic(oldX, oldY);
+				gameScreen.updateCamera();
+			}
 		}
 	}
 
@@ -96,7 +121,7 @@ public class GameLogic {
 		if (playerCell.getGroundType() == GroundTypeEnum.ICE) {
 			player.setSliding(true);
 			player.setForceSliding(false);
-			player.setSlipDirection(getDirectionFromCoords(oldX, oldY, player.getX(), player.getY()));
+			player.setSlipDirection(CoordHelper.getDirectionFromCoords(oldX, oldY, player.getX(), player.getY()));
 		} else if (playerCell.isForceTile()) {
 			player.setSliding(true);
 			player.setForceSliding(true);
@@ -166,23 +191,6 @@ public class GameLogic {
 		}
 
 		return false;
-	}
-
-	public DirectionEnum getDirectionFromCoords(int oldX, int oldY, int newX, int newY) {
-		if (newX - oldX == 1 && newY == oldY) {
-			return DirectionEnum.RIGHT;
-		}
-		if (newX - oldX == -1 && newY == oldY) {
-			return DirectionEnum.LEFT;
-		}
-		if (newX == oldX && newY - oldY == 1) {
-			return DirectionEnum.UP;
-		}
-		if (newX == oldX && newY - oldY == -1) {
-			return DirectionEnum.DOWN;
-		}
-
-		return DirectionEnum.NONE;
 	}
 
 	public DirectionEnum getDirectionFromForceTile(GroundTypeEnum groundType) {

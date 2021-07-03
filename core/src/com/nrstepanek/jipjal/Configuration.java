@@ -10,6 +10,8 @@ public final class Configuration {
 	public static final float VIEWPORT_WIDTH = 20;
 	public static final float VIEWPORT_HEIGHT = 10;
 
+	public static final float SLIDE_SPEED = 0.1f;
+
     private Configuration() {}
 
 }

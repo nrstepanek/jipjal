@@ -9,6 +9,7 @@ import java.util.HashMap;
 import com.badlogic.gdx.graphics.Texture;
 import com.nrstepanek.jipjal.map.ItemTypeEnum;
 import com.nrstepanek.jipjal.map.ObjectTypeEnum;
+import com.nrstepanek.jipjal.game.MonsterTypeEnum;
 import com.nrstepanek.jipjal.map.GroundTypeEnum;
 
 public class TextureHolder {
@@ -84,6 +85,17 @@ public class TextureHolder {
 				return getTexture("water");
 			case SOCKET:
 				return getTexture("socket");
+			case NONE:
+				return null;
+		}
+
+		return null;
+	}
+	
+	public Texture getTextureFromMonsterType(MonsterTypeEnum monsterType) {
+		switch (monsterType) {
+			case BUG:
+				return getTexture("bug");
 			case NONE:
 				return null;
 		}

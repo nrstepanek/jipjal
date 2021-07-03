@@ -5,5 +5,22 @@ public enum DirectionEnum {
 	LEFT,
 	UP,
 	RIGHT,
-	DOWN
+	DOWN;
+
+	public static DirectionEnum getLeftDirection(DirectionEnum direction) {
+		switch (direction) {
+		case LEFT:
+			return DOWN;
+		case DOWN:
+			return RIGHT;
+		case RIGHT:
+			return UP;
+		case UP:
+			return LEFT;
+		case NONE:
+			return NONE;
+		}
+
+		return NONE;
+	}
 }
