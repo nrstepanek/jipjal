@@ -46,9 +46,9 @@ public class Monster extends GridDrawable {
 
 	// Returns true if it was time for the monster to update.
 	public boolean update(float dt, JipjalMap map) {
-		// timeSinceLastUpdate += dt;
-		//if (timeSinceLastUpdate >= speed) {
-		//	timeSinceLastUpdate -= speed;
+		timeSinceLastUpdate += dt;
+		if (timeSinceLastUpdate >= speed) {
+			timeSinceLastUpdate -= speed;
 			switch (type) {
 			case BUG:
 				bugLogic(map);
@@ -56,7 +56,7 @@ public class Monster extends GridDrawable {
 			case NONE:
 				return false;
 			}
-		//}
+		}
 
 		return false;
 	}
