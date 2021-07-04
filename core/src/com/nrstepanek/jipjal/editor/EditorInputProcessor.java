@@ -7,17 +7,18 @@ import com.nrstepanek.jipjal.map.JipjalMap;
 public class EditorInputProcessor extends InputAdapter {
 
 	JipjalMap map;
-
 	EditorLogic logic;
+	EditorState state;
 
-	public EditorInputProcessor(EditorLogic logic) {
+	public EditorInputProcessor(EditorLogic logic, EditorState editorState) {
 		this.logic = logic;
+		this.state = editorState;
 	}
 
 	@Override
 	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
 		if (button == Input.Buttons.LEFT) {
-			logic.convertScreenCoords(screenX, screenY);
+			logic.modifyCell(screenX, screenY);
 		}
 
 		return true;
@@ -26,16 +27,16 @@ public class EditorInputProcessor extends InputAdapter {
 	@Override
 	public boolean keyDown(int keyCode) {
 		if (keyCode == Input.Keys.LEFT) {
-			logic.leftDown = true;
+			state.leftDown = true;
 		}
 		if (keyCode == Input.Keys.RIGHT) {
-			logic.rightDown = true;
+			state.rightDown = true;
 		}
 		if (keyCode == Input.Keys.DOWN) {
-			logic.downDown = true;
+			state.downDown = true;
 		}
 		if (keyCode == Input.Keys.UP) {
-			logic.upDown = true;
+			state.upDown = true;
 		}
 
 		return true;
@@ -44,16 +45,16 @@ public class EditorInputProcessor extends InputAdapter {
 	@Override
 	public boolean keyUp(int keyCode) {
 		if (keyCode == Input.Keys.LEFT) {
-			logic.leftDown = false;
+			state.leftDown = false;
 		}
 		if (keyCode == Input.Keys.RIGHT) {
-			logic.rightDown = false;
+			state.rightDown = false;
 		}
 		if (keyCode == Input.Keys.DOWN) {
-			logic.downDown = false;
+			state.downDown = false;
 		}
 		if (keyCode == Input.Keys.UP) {
-			logic.upDown = false;
+			state.upDown = false;
 		}
 
 		return true;

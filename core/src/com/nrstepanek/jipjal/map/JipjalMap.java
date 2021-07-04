@@ -164,6 +164,11 @@ public class JipjalMap implements Serializable {
 		cellMap.put(getCellLoc(cell), cell);
 	}
 
+	public void removeCellAt(int x, int y) {
+		int cellId = getCellId(x, y);
+		cellMap.remove(cellId);
+	}
+
     public void drawCells(SpriteBatch batch) {
         for (Cell cell : cellMap.values()) {
             cell.getSprite().draw(batch);
@@ -184,8 +189,13 @@ public class JipjalMap implements Serializable {
 		return cell.getX() + cell.getY() * this.width;
 	}
 
+	// Converts 2d coords to 1d map location.
+	public int getCellId(int x, int y) {
+		return y * width + x;
+	}
+
 	public Cell getCell(int x, int y) {
-		return cellMap.get(y * width + x);
+		return cellMap.get(getCellId(x, y));
 	}
 
     public int getWidth() {

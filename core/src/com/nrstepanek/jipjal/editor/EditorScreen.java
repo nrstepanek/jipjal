@@ -18,6 +18,7 @@ public class EditorScreen implements Screen {
 	private JipjalMap gameMap;
 
 	private EditorLogic logic;
+	private EditorInputProcessor inputProcessor;
 
 	private float cameraX;
 	private float cameraY;
@@ -35,12 +36,14 @@ public class EditorScreen implements Screen {
 			System.out.println("ERROR: Could not find map file.");
 		}
 
-		logic = new EditorLogic(gameMap, this);
+		EditorState editorState = new EditorState();
+		logic = new EditorLogic(this.gameMap, this, editorState);
+		this.inputProcessor = new EditorInputProcessor(this.logic, editorState);
 	}
 
 	@Override
 	public void show() {
-		Gdx.input.setInputProcessor(new EditorInputProcessor(this.logic));
+		Gdx.input.setInputProcessor(this.inputProcessor);
 		cameraX = Configuration.VIEWPORT_WIDTH / 2;
 		cameraY = Configuration.VIEWPORT_HEIGHT / 2;
 		resolutionWidth = Configuration.VIEWPORT_WIDTH;
