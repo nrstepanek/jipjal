@@ -36,7 +36,7 @@ public class GameScreen implements Screen {
 		else {
 			try {
 				gameMap = loader.loadFromFile("level_1.json");
-			} catch(FileNotFoundException fnfe) {
+			} catch (FileNotFoundException fnfe) {
 				System.out.println("ERROR: Could not find map file.");
 			}
 		}

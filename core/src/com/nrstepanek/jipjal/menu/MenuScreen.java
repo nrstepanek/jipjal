@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.nrstepanek.jipjal.Configuration;
 import com.nrstepanek.jipjal.JipjalGame;
 
-public class MenuScreen implements Screen{
+public class MenuScreen implements Screen {
 
 	JipjalGame game;
 
@@ -37,13 +37,13 @@ public class MenuScreen implements Screen{
 		
         game.batch.begin();
         //font.draw(game.batch, "Jipjal!", Gdx.graphics.getWidth() * .25f, Gdx.graphics.getHeight() * .75f);
-		font.draw(game.batch, "Jipjal!", Configuration.RESOLUTION_WIDTH * .25f, Configuration.RESOLUTION_HEIGHT * .75f);
-        font.draw(game.batch, "Press space to play.", Configuration.RESOLUTION_WIDTH * .25f, Configuration.RESOLUTION_HEIGHT * .25f);
+		font.draw(game.batch, "Jipjal!", Configuration.VIEWPORT_WIDTH * .25f, Configuration.VIEWPORT_HEIGHT * .75f);
+        font.draw(game.batch, "Press space to play.", Configuration.VIEWPORT_WIDTH * .25f, Configuration.VIEWPORT_HEIGHT * .25f);
         game.batch.end();
 	}
 
 	public void updateCamera() {
-		game.camera.position.set(Configuration.RESOLUTION_WIDTH / 2, Configuration.RESOLUTION_HEIGHT / 2, 0);
+		game.camera.position.set(Configuration.VIEWPORT_WIDTH / 2, Configuration.VIEWPORT_HEIGHT / 2, 0);
 		game.camera.update();
 	}
 
