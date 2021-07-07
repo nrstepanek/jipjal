@@ -22,11 +22,6 @@ public class PrefabLoader {
 
 	// OBJECT PREFABS
 
-	public Cell getGrassPrefab(int x, int y) {
-		Cell grassCell = new Cell(th.getTexture("grass"), x, y);
-		return grassCell;
-	}
-
 	public Cell getBlueLockPrefab(int x, int y) {
 		Cell blueLockCell = new Cell(th.getTexture("grass"), x, y);
 		blueLockCell.setSolid(true);
@@ -76,11 +71,46 @@ public class PrefabLoader {
 		return socketCell;
 	}
 
-	// OTHER PREFABS
+	// GROUND PREFABS
+
+	public Cell getGrassPrefab(int x, int y) {
+		Cell grassCell = new Cell(th.getTexture("grass"), x, y);
+		return grassCell;
+	}
 
 	public Cell getWallPrefab(int x, int y) {
 		Cell wallCell = new Cell(th.getTexture("wall"), x, y);
 		wallCell.setSolid(true);
 		return wallCell;
+	}
+
+	public Cell getIcePrefab(int x, int y) {
+		Cell iceCell = new Cell(th.getTexture("ice"), x, y);
+		iceCell.setGroundType(GroundTypeEnum.ICE);
+		return iceCell;
+	}
+
+	public Cell getForceLeftPrefab(int x, int y) {
+		Cell forceLeftCell = new Cell(th.getTexture("force_left"), x, y);
+		forceLeftCell.setGroundType(GroundTypeEnum.FORCE_LEFT);
+		return forceLeftCell;
+	}
+
+	public Cell getForceDownPrefab(int x, int y) {
+		Cell forceDownCell = new Cell(th.getTexture("force_down"), x, y);
+		forceDownCell.setGroundType(GroundTypeEnum.FORCE_LEFT);
+		return forceDownCell;
+	}
+
+	public Cell getForceRightPrefab(int x, int y) {
+		Cell forceRightCell = new Cell(th.getTexture("force_right"), x, y);
+		forceRightCell.setGroundType(GroundTypeEnum.FORCE_RIGHT);
+		return forceRightCell;
+	}
+
+	public Cell getForceUpPrefab(int x, int y) {
+		Cell forceUpCell = new Cell(th.getTexture("force_up"), x, y);
+		forceUpCell.setGroundType(GroundTypeEnum.FORCE_UP);
+		return forceUpCell;
 	}
 }

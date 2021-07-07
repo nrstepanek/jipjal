@@ -2,7 +2,9 @@ package com.nrstepanek.jipjal.editor;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
+import com.nrstepanek.jipjal.map.GroundTypeEnum;
 import com.nrstepanek.jipjal.map.JipjalMap;
+import com.nrstepanek.jipjal.map.ObjectTypeEnum;
 
 public class EditorInputProcessor extends InputAdapter {
 
@@ -26,6 +28,7 @@ public class EditorInputProcessor extends InputAdapter {
 
 	@Override
 	public boolean keyDown(int keyCode) {
+		// ARROW KEYS
 		if (keyCode == Input.Keys.LEFT) {
 			state.leftDown = true;
 		}
@@ -37,6 +40,27 @@ public class EditorInputProcessor extends InputAdapter {
 		}
 		if (keyCode == Input.Keys.UP) {
 			state.upDown = true;
+		}
+
+		// MODIFIER KEYS
+		if (keyCode == Input.Keys.SHIFT_LEFT || keyCode == Input.Keys.SHIFT_RIGHT) {
+			state.shiftDown = true;
+		}
+
+		// GROUND TYPES
+		if (keyCode == Input.Keys.ESCAPE) {
+			state.selectedCell.setGroundType(GroundTypeEnum.GRASS);
+		}
+		if (keyCode == Input.Keys.W) {
+			state.selectedCell.setGroundType(GroundTypeEnum.WALL);
+		}
+		if (keyCode == Input.Keys.I) {
+			state.selectedCell.setGroundType(GroundTypeEnum.ICE);
+		}
+
+
+		if (keyCode == Input.Keys.F) {
+			state.selectedCell.setObjectType(ObjectTypeEnum.FIRE);
 		}
 
 		return true;

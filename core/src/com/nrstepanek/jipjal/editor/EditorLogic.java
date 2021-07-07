@@ -26,7 +26,8 @@ public class EditorLogic {
 	public void modifyCell(int screenX, int screenY) {
 		List<Integer> cellCoords = convertScreenCoords(screenX, screenY);
 		map.removeCellAt(cellCoords.get(0), cellCoords.get(1));
-		Cell newCell = pl.getWallPrefab(cellCoords.get(0), cellCoords.get(1));
+		// Cell newCell = pl.getWallPrefab(cellCoords.get(0), cellCoords.get(1));
+		Cell newCell = editorState.selectedCell.getSelectedCellPrefab(cellCoords.get(0), cellCoords.get(1));
 		map.addToCellMap(newCell);
 	}
 
