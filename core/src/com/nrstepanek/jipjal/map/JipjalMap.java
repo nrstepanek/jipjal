@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
-import java.io.Serializable;
+import java.io.StringWriter;
 import java.lang.Math;
 
 import com.badlogic.gdx.graphics.Texture;
@@ -13,8 +13,11 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.nrstepanek.jipjal.TextureHolder;
 import com.nrstepanek.jipjal.game.Monster;
 import com.nrstepanek.jipjal.game.MonsterTypeEnum;
+import com.badlogic.gdx.utils.Json;
+import com.badlogic.gdx.utils.JsonValue;
+import com.badlogic.gdx.utils.JsonWriter;
 
-public class JipjalMap implements Serializable {
+public class JipjalMap {
 
     private int width;
     private int height;
@@ -30,6 +33,8 @@ public class JipjalMap implements Serializable {
 
     private TextureHolder th;
 
+	private String name;
+
     public JipjalMap(int width, int height, TextureHolder textureHolder, boolean random) {
         this.width = width;
         this.height = height;
@@ -39,6 +44,8 @@ public class JipjalMap implements Serializable {
 		if (random) {
         	randomGenerate();
 		}
+
+		this.name = "default";
     }
 
 	public JipjalMap(TextureHolder textureHolder) {
@@ -49,6 +56,8 @@ public class JipjalMap implements Serializable {
 		this.socketThreshold = 2;
 		this.monsters = new ArrayList<>();
 		generateTestMap();
+
+		this.name = "test map";
 	}
 
     public void randomGenerate() {
@@ -253,4 +262,100 @@ public class JipjalMap implements Serializable {
 	public int getPlayerStartY() {
 		return this.playerStartY;
 	}
+
+	public String getName() {
+		return this.name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Json toJson() {
+		Json json = new Json();
+		StringWriter jsonText = new StringWriter();
+		JsonWriter writer = new JsonWriter(jsonText);
+		json.setWriter(writer);
+		json.writeObjectStart();
+
+		json.writeValue("width", width);
+		json.writeValue("height", height);
+		json.writeValue("playerStartX", playerStartX);
+		json.writeValue("playerStartY", playerStartY);
+		json.writeValue("socketThreshold", socketThreshold);
+
+		List<Integer> wallXs = new ArrayList<>();
+		List<Integer> wallYs = new ArrayList<>();
+
+		List<ObjectTypeEnum> objectTypes = new ArrayList<>();
+		List<Integer> objectXs = new ArrayList<>();
+		List<Integer> objectYs = new ArrayList<>();
+
+		List<ItemTypeEnum> itemTypes = new ArrayList<>();
+		List<Integer> itemXs = new ArrayList<>();
+		List<Integer> itemYs = new ArrayList<>();
+
+		for (Cell cell : cellMap.values()) {
+			if (cell.getGroundType() == GroundTypeEnum.WALL) {
+				wallXs.add(cell.getX());
+				wallYs.add(cell.getY());
+			}
+			else if (cell.getObjectType() != ObjectTypeEnum.NONE) {
+				objectTypes.add(cell.getObjectType());
+				objectXs.add(cell.getX());
+				objectYs.add(cell.getY());
+			}
+			else if (cell.hasItem()) {
+				itemTypes.add(cell.getItem().getItemType());
+				itemXs.add(cell.getX());
+				itemYs.add(cell.getY());
+			}
+		}
+
+		json.writeArrayStart("walls");
+		for (int i = 0; i < wallXs.size(); i++) {
+			// Wall list.
+			Json wallJson = new Json();
+			wallJson.setOutputType(JsonWriter.OutputType.json);
+			wallJson.setWriter(writer);
+			wallJson.writeObjectStart();
+			wallJson.writeValue("x", wallXs.get(i));
+			wallJson.writeValue("y", wallYs.get(i));
+			wallJson.writeObjectEnd();
+		}
+		json.writeArrayEnd();
+
+		json.writeArrayStart("objects");
+		for (int i = 0; i < objectXs.size(); i++) {
+			// Wall list.
+			Json objectJson = new Json();
+			objectJson.setOutputType(JsonWriter.OutputType.json);
+			objectJson.setWriter(writer);
+			objectJson.writeObjectStart();
+			objectJson.writeValue("type", ObjectTypeEnum.toString(objectTypes.get(i)));
+			objectJson.writeValue("x", objectXs.get(i));
+			objectJson.writeValue("y", objectYs.get(i));
+			objectJson.writeObjectEnd();
+		}
+		json.writeArrayEnd();
+
+		json.writeArrayStart("items");
+		for (int i = 0; i < itemXs.size(); i++) {
+			// Wall list.
+			Json itemJson = new Json();
+			itemJson.setOutputType(JsonWriter.OutputType.json);
+			itemJson.setWriter(writer);
+			itemJson.writeObjectStart();
+			itemJson.writeValue("type", ItemTypeEnum.toString(itemTypes.get(i)));
+			itemJson.writeValue("x", itemXs.get(i));
+			itemJson.writeValue("y", itemYs.get(i));
+			itemJson.writeObjectEnd();
+		}
+		json.writeArrayEnd();
+
+		json.writeObjectEnd();
+
+		return json;
+	}
+
 }

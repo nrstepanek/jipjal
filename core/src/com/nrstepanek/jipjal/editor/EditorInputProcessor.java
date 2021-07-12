@@ -4,11 +4,11 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.nrstepanek.jipjal.map.GroundTypeEnum;
 import com.nrstepanek.jipjal.map.JipjalMap;
+import com.nrstepanek.jipjal.map.MapSaver;
 import com.nrstepanek.jipjal.map.ObjectTypeEnum;
 
 public class EditorInputProcessor extends InputAdapter {
 
-	JipjalMap map;
 	EditorLogic logic;
 	EditorState state;
 
@@ -61,6 +61,11 @@ public class EditorInputProcessor extends InputAdapter {
 
 		if (keyCode == Input.Keys.F) {
 			state.selectedCell.setObjectType(ObjectTypeEnum.FIRE);
+		}
+
+		// Save.
+		if (keyCode == Input.Keys.S) {
+			logic.saveMap();
 		}
 
 		return true;

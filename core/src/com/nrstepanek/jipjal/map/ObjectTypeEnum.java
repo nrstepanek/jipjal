@@ -10,6 +10,29 @@ public enum ObjectTypeEnum {
 	WATER,
 	SOCKET;
 
+	public static String toString(ObjectTypeEnum objectType) {
+		switch (objectType) {
+			case NONE:
+				return "none";
+			case BLUE_LOCK:
+				return "blue_lock";
+			case GREEN_LOCK:
+				return "green_lock";
+			case RED_LOCK:
+				return "red_lock";
+			case YELLOW_LOCK:
+				return "yellow_lock";
+			case FIRE:
+				return "fire";
+			case WATER:
+				return "water";
+			case SOCKET:
+				return "socket";
+		}
+
+		return "none";
+	}
+
 	public static ObjectTypeEnum fromString(String objectType) {
 		switch (objectType) {
 			case "blue_lock":

@@ -7,6 +7,7 @@ import com.nrstepanek.jipjal.Configuration;
 import com.nrstepanek.jipjal.TextureHolder;
 import com.nrstepanek.jipjal.map.Cell;
 import com.nrstepanek.jipjal.map.JipjalMap;
+import com.nrstepanek.jipjal.map.MapSaver;
 import com.nrstepanek.jipjal.map.PrefabLoader;
 
 public class EditorLogic {
@@ -79,5 +80,9 @@ public class EditorLogic {
 		xyd.add(yd);
 
 		return xyd;
+	}
+
+	public void saveMap() {
+		MapSaver.saveMap(map);
 	}
 }

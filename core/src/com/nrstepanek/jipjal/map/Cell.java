@@ -22,10 +22,11 @@ public class Cell extends GridDrawable {
     public Cell(Texture groundTexture, int x, int y) {
         super(groundTexture, x, y);
         this.solid = false;
-		this.objectType = ObjectTypeEnum.NONE;
 		this.dangerous = false;
 		this.isGoal = false;
 		this.isPlayerStart = false;
+		this.groundType = GroundTypeEnum.NONE;
+		this.objectType = ObjectTypeEnum.NONE;
     }
 
     public boolean getSolid() {

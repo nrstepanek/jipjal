@@ -8,6 +8,26 @@ public enum ItemTypeEnum {
 	RED_KEY,
 	YELLOW_KEY;
 
+	public static String toString(ItemTypeEnum itemType) {
+		switch (itemType) {
+			case NONE:
+				return "none";
+			case CHIP:
+				return "chip";
+			case BLUE_KEY:
+				return "blue_key";
+			case GREEN_KEY:
+				return "green_key";
+			case RED_KEY:
+				return "red_key";
+			case YELLOW_KEY:
+				return "yellow_key";
+		}
+
+		return "none";
+	}
+
+
 	public static ItemTypeEnum fromString(String itemType) {
 		switch (itemType) {
 			case "chip":

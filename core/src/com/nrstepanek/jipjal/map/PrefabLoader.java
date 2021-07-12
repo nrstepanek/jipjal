@@ -80,6 +80,7 @@ public class PrefabLoader {
 
 	public Cell getWallPrefab(int x, int y) {
 		Cell wallCell = new Cell(th.getTexture("wall"), x, y);
+		wallCell.setGroundType(GroundTypeEnum.WALL);
 		wallCell.setSolid(true);
 		return wallCell;
 	}

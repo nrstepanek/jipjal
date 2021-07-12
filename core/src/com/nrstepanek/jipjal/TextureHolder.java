@@ -35,6 +35,8 @@ public class TextureHolder {
 
 	public Texture getTextureFromGroundType(GroundTypeEnum groundType) {
 		switch (groundType) {
+			case WALL:
+				return getTexture("wall");
 			case GRASS:
 				return getTexture("grass");
 			case ICE:
