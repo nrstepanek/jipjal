@@ -9,9 +9,9 @@ public final class MapSaver {
 	private MapSaver() {}
 	
 	public static void saveMap(JipjalMap map) {
-		// FileHandle mapFileHandle = Gdx.files.internal("./maps/custom/" + map.getName());
 		Json json = map.toJson();
 		String mapString = json.getWriter().getWriter().toString();
-		System.out.println(mapString);
+		FileHandle mapFileHandle = Gdx.files.local("./maps/" + map.getName() + ".json");
+		mapFileHandle.writeString(mapString, false);
 	}
 }

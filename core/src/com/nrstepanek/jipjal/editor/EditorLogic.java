@@ -26,10 +26,15 @@ public class EditorLogic {
 	
 	public void modifyCell(int screenX, int screenY) {
 		List<Integer> cellCoords = convertScreenCoords(screenX, screenY);
-		map.removeCellAt(cellCoords.get(0), cellCoords.get(1));
-		// Cell newCell = pl.getWallPrefab(cellCoords.get(0), cellCoords.get(1));
-		Cell newCell = editorState.selectedCell.getSelectedCellPrefab(cellCoords.get(0), cellCoords.get(1));
-		map.addToCellMap(newCell);
+		if (editorState.selectedCell.playerStart) {
+			map.setPlayerStartX(cellCoords.get(0));
+			map.setPlayerStartY(cellCoords.get(1));
+		}
+		else {
+			map.removeCellAt(cellCoords.get(0), cellCoords.get(1));
+			Cell newCell = editorState.selectedCell.getSelectedCellPrefab(cellCoords.get(0), cellCoords.get(1));
+			map.addToCellMap(newCell);
+		}
 	}
 
 	public List<Integer> convertScreenCoords(int screenX, int screenY) {

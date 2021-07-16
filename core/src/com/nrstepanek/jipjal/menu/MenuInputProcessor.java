@@ -17,10 +17,13 @@ public class MenuInputProcessor extends InputAdapter {
 	@Override
 	public boolean keyDown(int keyCode) {
 		if (keyCode == Input.Keys.SPACE) {
-			game.setScreen(new GameScreen(game));
+			game.setScreen(new GameScreen(game, "level_1.json"));
 		}
 		if (keyCode == Input.Keys.E) {
 			game.setScreen(new EditorScreen(game));
+		}
+		if (keyCode == Input.Keys.T) {
+			game.setScreen(new GameScreen(game, "test_map.json"));
 		}
 		return true;
 	}

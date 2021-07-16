@@ -36,6 +36,7 @@ public class EditorScreen implements Screen {
 			System.out.println("ERROR: Could not find map file.");
 		}
 
+		gameMap.setName("test_map");
 		EditorState editorState = new EditorState(game.textureHolder);
 		logic = new EditorLogic(this.gameMap, this, editorState);
 		this.inputProcessor = new EditorInputProcessor(this.logic, editorState);

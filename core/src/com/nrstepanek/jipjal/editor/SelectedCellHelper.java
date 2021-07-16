@@ -15,6 +15,8 @@ public class SelectedCellHelper {
 	GroundTypeEnum groundType;
 	MonsterTypeEnum monsterType;
 
+	boolean playerStart;
+
 	PrefabLoader pl;
 
 	public SelectedCellHelper(TextureHolder th) {
@@ -27,6 +29,7 @@ public class SelectedCellHelper {
 		this.itemType = null;
 		this.groundType = null;
 		this.monsterType = null;
+		this.playerStart = false;
 	}
 
 	public void setItemType(ItemTypeEnum itemType) {
@@ -34,6 +37,7 @@ public class SelectedCellHelper {
 		this.itemType = itemType;
 		this.groundType = null;
 		this.monsterType = null;
+		this.playerStart = false;
 	}
 
 	public void setGroundType(GroundTypeEnum groundType) {
@@ -41,6 +45,7 @@ public class SelectedCellHelper {
 		this.itemType = null;
 		this.groundType = groundType;
 		this.monsterType = null;
+		this.playerStart = false;
 	}
 
 	public void setMonsterType(MonsterTypeEnum monsterType) {
@@ -48,6 +53,15 @@ public class SelectedCellHelper {
 		this.itemType = null;
 		this.groundType = null;
 		this.monsterType = monsterType;
+		this.playerStart = false;
+	}
+
+	public void setPlayerStart() {
+		this.objectType = null;
+		this.itemType = null;
+		this.groundType = null;
+		this.monsterType = null;
+		this.playerStart = true;
 	}
 
 	public Cell getSelectedCellPrefab(int x, int y) {

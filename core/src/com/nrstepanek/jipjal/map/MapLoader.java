@@ -21,7 +21,10 @@ public class MapLoader {
 	public JipjalMap loadFromFile(String filename) throws FileNotFoundException {
 		FileHandle mapFileHandle = Gdx.files.internal("./maps/" + filename);
 		if (!mapFileHandle.exists()) {
-			throw new FileNotFoundException("Could not find map with name: " + filename);
+			mapFileHandle = Gdx.files.local("./maps/" + filename);
+			if (!mapFileHandle.exists()) {
+				throw new FileNotFoundException("Could not find map with name: " + filename);
+			}
 		}
 
 		JsonReader json = new JsonReader();

@@ -63,6 +63,11 @@ public class EditorInputProcessor extends InputAdapter {
 			state.selectedCell.setObjectType(ObjectTypeEnum.FIRE);
 		}
 
+		// Player start.
+		if (keyCode == Input.Keys.P) {
+			state.selectedCell.setPlayerStart();
+		}
+
 		// Save.
 		if (keyCode == Input.Keys.S) {
 			logic.saveMap();

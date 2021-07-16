@@ -24,21 +24,16 @@ public class GameScreen implements Screen {
 
 	float timeSinceLastUpdate;
 
-	public GameScreen(JipjalGame game) {
+	public GameScreen(JipjalGame game, String fileName) {
 		this.game = game;
 
 		MapLoader loader = new MapLoader(game.textureHolder);
 
 		// gameMap = new GameMap(32, 32, textureHolder);
-		if (Configuration.GAME_MODE == "test") {
-			gameMap = new JipjalMap(game.textureHolder);
-		}
-		else {
-			try {
-				gameMap = loader.loadFromFile("level_1.json");
-			} catch (FileNotFoundException fnfe) {
-				System.out.println("ERROR: Could not find map file.");
-			}
+		try {
+			gameMap = loader.loadFromFile(fileName);
+		} catch (FileNotFoundException fnfe) {
+			System.out.println("ERROR: Could not find map file.");
 		}
 
 		player = new Player(game.textureHolder.getTexture("player"), gameMap.getPlayerStartX(), gameMap.getPlayerStartY());
