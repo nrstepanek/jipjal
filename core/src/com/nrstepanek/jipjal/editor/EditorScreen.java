@@ -5,11 +5,13 @@ import java.util.List;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.nrstepanek.jipjal.Configuration;
 import com.nrstepanek.jipjal.JipjalGame;
 import com.nrstepanek.jipjal.map.JipjalMap;
 import com.nrstepanek.jipjal.map.MapLoader;
+import com.nrstepanek.jipjal.menu.MenuScreen;
 
 public class EditorScreen implements Screen {
 
@@ -24,9 +26,12 @@ public class EditorScreen implements Screen {
 	private float cameraY;
 	private int resolutionWidth;
 	private int resolutionHeight;
+
+	public Stage menuStage;
 	
 	public EditorScreen(JipjalGame game) {
 		this.game = game;
+		this.menuStage = new Stage();
 
 		MapLoader loader = new MapLoader(game.textureHolder);
 
@@ -44,7 +49,7 @@ public class EditorScreen implements Screen {
 
 	@Override
 	public void show() {
-		Gdx.input.setInputProcessor(this.inputProcessor);
+		setInputProcessor();
 		cameraX = Configuration.VIEWPORT_WIDTH / 2;
 		cameraY = Configuration.VIEWPORT_HEIGHT / 2;
 		resolutionWidth = Configuration.VIEWPORT_WIDTH;
@@ -66,6 +71,18 @@ public class EditorScreen implements Screen {
 		game.batch.begin();
 		gameMap.drawCells(game.batch);
 		game.batch.end();
+
+		menuStage.act();
+		menuStage.draw();
+	}
+
+	// Sets the input processor back to the editor processor.
+	public void setInputProcessor() {
+		Gdx.input.setInputProcessor(this.inputProcessor);
+	}
+
+	public void mainMenu() {
+		game.setScreen(new MenuScreen(game));
 	}
 
 	@Override

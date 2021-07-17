@@ -3,8 +3,6 @@ package com.nrstepanek.jipjal.editor;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.nrstepanek.jipjal.map.GroundTypeEnum;
-import com.nrstepanek.jipjal.map.JipjalMap;
-import com.nrstepanek.jipjal.map.MapSaver;
 import com.nrstepanek.jipjal.map.ObjectTypeEnum;
 
 public class EditorInputProcessor extends InputAdapter {
@@ -49,7 +47,12 @@ public class EditorInputProcessor extends InputAdapter {
 
 		// GROUND TYPES
 		if (keyCode == Input.Keys.ESCAPE) {
-			state.selectedCell.setGroundType(GroundTypeEnum.GRASS);
+			if (state.selectedCell.onGrass()) {
+				logic.pause();
+			}
+			else {
+				state.selectedCell.setGroundType(GroundTypeEnum.GRASS);
+			}
 		}
 		if (keyCode == Input.Keys.W) {
 			state.selectedCell.setGroundType(GroundTypeEnum.WALL);

@@ -112,5 +112,9 @@ public class SelectedCellHelper {
 
 		return null;
 	}
+
+	public boolean onGrass() {
+		return this.groundType == GroundTypeEnum.GRASS;
+	}
 }
 

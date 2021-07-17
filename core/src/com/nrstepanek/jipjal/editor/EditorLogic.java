@@ -3,6 +3,12 @@ package com.nrstepanek.jipjal.editor;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.scenes.scene2d.EventListener;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.nrstepanek.jipjal.Configuration;
 import com.nrstepanek.jipjal.TextureHolder;
 import com.nrstepanek.jipjal.map.Cell;
@@ -89,5 +95,12 @@ public class EditorLogic {
 
 	public void saveMap() {
 		MapSaver.saveMap(map);
+	}
+
+	public void pause() {
+		Skin uiSkin = new Skin(Gdx.files.internal("skins/clean-crispy/skin/clean-crispy-ui.json"));
+		ExitDialog exitDialog = new ExitDialog("Warning", uiSkin, editorScreen);
+		exitDialog.show(editorScreen.menuStage);
+		Gdx.input.setInputProcessor(editorScreen.menuStage);
 	}
 }
