@@ -36,9 +36,10 @@ public class EditorScreen implements Screen {
 		MapLoader loader = new MapLoader(game.textureHolder);
 
 		try {
-			gameMap = loader.loadFromFile("level_1.json");
+			gameMap = loader.loadFromFile("test_map.json");
 		} catch (FileNotFoundException fnfe) {
-			System.out.println("ERROR: Could not find map file.");
+			System.out.println("ERROR: Could not find map file. Starting new map.");
+			gameMap = new JipjalMap(32, 32, game.textureHolder, false);
 		}
 
 		gameMap.setName("test_map");

@@ -43,6 +43,9 @@ public class JipjalMap {
 		if (random) {
         	randomGenerate();
 		}
+		else {
+			generateBlank();
+		}
 
 		this.name = "default";
     }
@@ -57,6 +60,15 @@ public class JipjalMap {
 		generateTestMap();
 
 		this.name = "test map";
+	}
+
+	public void generateBlank() {
+		Texture texture = th.getTexture("grass");
+
+		for (int i = 0; i < width * height; i++) {
+			Cell newCell = new Cell(texture, i % width, (int) Math.floor(i / height));
+			cellMap.put(i, newCell);
+		}
 	}
 
     public void randomGenerate() {
@@ -283,8 +295,9 @@ public class JipjalMap {
 		json.writeValue("playerStartY", playerStartY);
 		json.writeValue("socketThreshold", socketThreshold);
 
-		List<Integer> wallXs = new ArrayList<>();
-		List<Integer> wallYs = new ArrayList<>();
+		List<GroundTypeEnum> groundTypes = new ArrayList<>();
+		List<Integer> groundXs = new ArrayList<>();
+		List<Integer> groundYs = new ArrayList<>();
 
 		List<ObjectTypeEnum> objectTypes = new ArrayList<>();
 		List<Integer> objectXs = new ArrayList<>();
@@ -295,9 +308,10 @@ public class JipjalMap {
 		List<Integer> itemYs = new ArrayList<>();
 
 		for (Cell cell : cellMap.values()) {
-			if (cell.getGroundType() == GroundTypeEnum.WALL) {
-				wallXs.add(cell.getX());
-				wallYs.add(cell.getY());
+			if (cell.getGroundType() != GroundTypeEnum.NONE && cell.getGroundType() != GroundTypeEnum.GRASS) {
+				groundTypes.add(cell.getGroundType());
+				groundXs.add(cell.getX());
+				groundYs.add(cell.getY());
 			}
 			else if (cell.getObjectType() != ObjectTypeEnum.NONE) {
 				objectTypes.add(cell.getObjectType());
@@ -311,16 +325,17 @@ public class JipjalMap {
 			}
 		}
 
-		json.writeArrayStart("walls");
-		for (int i = 0; i < wallXs.size(); i++) {
+		json.writeArrayStart("ground");
+		for (int i = 0; i < groundXs.size(); i++) {
 			// Wall list.
-			Json wallJson = new Json();
-			wallJson.setOutputType(JsonWriter.OutputType.json);
-			wallJson.setWriter(writer);
-			wallJson.writeObjectStart();
-			wallJson.writeValue("x", wallXs.get(i));
-			wallJson.writeValue("y", wallYs.get(i));
-			wallJson.writeObjectEnd();
+			Json groundJson = new Json();
+			groundJson.setOutputType(JsonWriter.OutputType.json);
+			groundJson.setWriter(writer);
+			groundJson.writeObjectStart();
+			groundJson.writeValue("type", GroundTypeEnum.toString(groundTypes.get(i)));
+			groundJson.writeValue("x", groundXs.get(i));
+			groundJson.writeValue("y", groundYs.get(i));
+			groundJson.writeObjectEnd();
 		}
 		json.writeArrayEnd();
 

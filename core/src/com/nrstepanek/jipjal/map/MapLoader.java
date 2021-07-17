@@ -35,10 +35,35 @@ public class MapLoader {
 		JipjalMap map = new JipjalMap(mapWidth, mapHeight, th, false);
 		map.setSocketThreshold(mapJson.getInt("socketThreshold"));
 		
-		JsonValue wallJson = mapJson.get("walls");
-		for (JsonValue wall : wallJson) {
-			Cell wallCell = pl.getWallPrefab(wall.getInt("x"), wall.getInt("y"));
-			map.addToCellMap(wallCell);
+		JsonValue groundJson = mapJson.get("ground");
+		for (JsonValue ground : groundJson) {
+			GroundTypeEnum groundType = GroundTypeEnum.fromString(ground.getString("type"));
+			int groundX = ground.getInt("x");
+			int groundY = ground.getInt("y");
+			switch (groundType) {
+				case GRASS:
+					break;
+				case NONE:
+					break;
+				case WALL:
+					map.addToCellMap(pl.getWallPrefab(groundX, groundY));
+					break;
+				case ICE:
+					map.addToCellMap(pl.getIcePrefab(groundX, groundY));
+					break;
+				case FORCE_LEFT:
+					map.addToCellMap(pl.getForceLeftPrefab(groundX, groundY));
+					break;
+				case FORCE_UP:
+					map.addToCellMap(pl.getForceUpPrefab(groundX, groundY));
+					break;
+				case FORCE_RIGHT:
+					map.addToCellMap(pl.getForceRightPrefab(groundX, groundY));
+					break;
+				case FORCE_DOWN:
+					map.addToCellMap(pl.getForceDownPrefab(groundX, groundY));
+					break;
+			}
 		}
 
 		JsonValue objectsJson = mapJson.get("objects");
