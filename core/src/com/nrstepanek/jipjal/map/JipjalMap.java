@@ -14,7 +14,6 @@ import com.nrstepanek.jipjal.TextureHolder;
 import com.nrstepanek.jipjal.game.Monster;
 import com.nrstepanek.jipjal.game.MonsterTypeEnum;
 import com.badlogic.gdx.utils.Json;
-import com.badlogic.gdx.utils.JsonValue;
 import com.badlogic.gdx.utils.JsonWriter;
 
 public class JipjalMap {

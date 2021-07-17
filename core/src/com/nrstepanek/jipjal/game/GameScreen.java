@@ -6,7 +6,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.utils.ScreenUtils;
-import com.nrstepanek.jipjal.Configuration;
 import com.nrstepanek.jipjal.JipjalGame;
 import com.nrstepanek.jipjal.map.JipjalMap;
 import com.nrstepanek.jipjal.map.MapLoader;
