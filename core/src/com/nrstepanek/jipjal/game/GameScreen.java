@@ -3,8 +3,8 @@ package com.nrstepanek.jipjal.game;
 import java.io.FileNotFoundException;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.nrstepanek.jipjal.JipjalGame;
 import com.nrstepanek.jipjal.map.JipjalMap;
@@ -23,8 +23,14 @@ public class GameScreen implements Screen {
 
 	float timeSinceLastUpdate;
 
+	String fileName;
+
+	public Stage menuStage;
+
 	public GameScreen(JipjalGame game, String fileName) {
 		this.game = game;
+		this.fileName = fileName;
+		this.menuStage = new Stage();
 
 		MapLoader loader = new MapLoader(game.textureHolder);
 
@@ -45,8 +51,7 @@ public class GameScreen implements Screen {
 
 	@Override
 	public void show() {
-		InputProcessor inputProcessor = new GameInputProcessor(logic);
-		Gdx.input.setInputProcessor(inputProcessor);
+		this.setInputProcessor();
 	}
 
 	@Override
@@ -64,6 +69,9 @@ public class GameScreen implements Screen {
 			monster.getSprite().draw(game.batch);
 		}
 		game.batch.end();
+
+		menuStage.act();
+		menuStage.draw();
 	}
 
 	public void updateCamera() {
@@ -71,7 +79,18 @@ public class GameScreen implements Screen {
 		game.camera.update();
 	}
 
+	public void setInputProcessor() {
+		Gdx.input.setInputProcessor(new GameInputProcessor(logic));
+	}
+
 	public void gameOver() {
+		game.setScreen(new MenuScreen(game));
+	}
+	public void restart() {
+		game.setScreen(new GameScreen(game, fileName));
+	}
+
+	public void mainMenu() {
 		game.setScreen(new MenuScreen(game));
 	}
 

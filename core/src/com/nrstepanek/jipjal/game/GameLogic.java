@@ -2,6 +2,8 @@ package com.nrstepanek.jipjal.game;
 
 import java.util.List;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.nrstepanek.jipjal.Configuration;
 import com.nrstepanek.jipjal.CoordHelper;
 import com.nrstepanek.jipjal.map.Cell;
@@ -58,6 +60,13 @@ public class GameLogic {
 		if (checkPlayerMonsterCollission()) {
 			gameScreen.gameOver();
 		}
+	}
+
+	public void pause() {
+		Skin uiSkin = new Skin(Gdx.files.internal("skins/clean-crispy/skin/clean-crispy-ui.json"));
+		PauseDialog pauseDialog = new PauseDialog("Warning", uiSkin, gameScreen);
+		pauseDialog.show(gameScreen.menuStage);
+		Gdx.input.setInputProcessor(gameScreen.menuStage);
 	}
 
 	public void playerMove(DirectionEnum direction) {

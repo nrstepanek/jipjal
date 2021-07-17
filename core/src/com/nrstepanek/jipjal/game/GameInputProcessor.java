@@ -24,6 +24,10 @@ public class GameInputProcessor extends InputAdapter {
             	logic.playerMove(DirectionEnum.DOWN);
 		}
 
+		if (keycode == Keys.ESCAPE) {
+			logic.pause();
+		}
+
         return true;
     }
 }
