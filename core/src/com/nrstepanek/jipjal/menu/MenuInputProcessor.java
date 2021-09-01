@@ -10,8 +10,11 @@ public class MenuInputProcessor extends InputAdapter {
 
 	JipjalGame game;
 
-	public MenuInputProcessor(JipjalGame game) {
+	MenuScreen menuScreen;
+
+	public MenuInputProcessor(JipjalGame game, MenuScreen menuScreen) {
 		this.game = game;
+		this.menuScreen = menuScreen;
 	}
 	
 	@Override
@@ -24,6 +27,9 @@ public class MenuInputProcessor extends InputAdapter {
 		}
 		if (keyCode == Input.Keys.T) {
 			game.setScreen(new GameScreen(game, "test_map.json"));
+		}
+		if (keyCode == Input.Keys.S) {
+			menuScreen.openLevelSelect();
 		}
 		return true;
 	}
