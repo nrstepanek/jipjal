@@ -1,4 +1,4 @@
-package com.nrstepanek.jipjal.menu;
+package com.nrstepanek.jipjal.menu.level_select;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
@@ -41,5 +41,7 @@ public class LevelSelectStage extends Stage {
 		}
 
 		container.add(scroll).expand().fill();
+
+		this.addListener(new LevelSelectListener(game));
 	}
 }

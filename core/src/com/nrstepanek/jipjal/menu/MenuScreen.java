@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.nrstepanek.jipjal.Configuration;
 import com.nrstepanek.jipjal.JipjalGame;
+import com.nrstepanek.jipjal.menu.level_select.LevelSelectStage;
 
 public class MenuScreen implements Screen {
 
