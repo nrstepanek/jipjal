@@ -86,6 +86,11 @@ public class EditorScreen implements Screen {
 		game.setScreen(new MenuScreen(game));
 	}
 
+	protected void saveMap(String mapName) {
+		logic.saveMap(mapName);
+		setInputProcessor();
+	}
+
 	@Override
 	public void resize(int width, int height) {
 		// TODO Auto-generated method stub

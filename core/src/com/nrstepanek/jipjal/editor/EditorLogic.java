@@ -89,7 +89,8 @@ public class EditorLogic {
 		return xyd;
 	}
 
-	public void saveMap() {
+	public void saveMap(String mapName) {
+		map.setName(mapName);
 		MapSaver.saveMap(map);
 	}
 
@@ -97,6 +98,13 @@ public class EditorLogic {
 		Skin uiSkin = new Skin(Gdx.files.internal("skins/clean-crispy/skin/clean-crispy-ui.json"));
 		ExitDialog exitDialog = new ExitDialog("Warning", uiSkin, editorScreen);
 		exitDialog.show(editorScreen.menuStage);
+		Gdx.input.setInputProcessor(editorScreen.menuStage);
+	}
+
+	public void openSaveDialog() {
+		Skin uiSkin = new Skin(Gdx.files.internal("skins/clean-crispy/skin/clean-crispy-ui.json"));
+		SaveDialog saveDialog = new SaveDialog(uiSkin, editorScreen);
+		saveDialog.show(editorScreen.menuStage);
 		Gdx.input.setInputProcessor(editorScreen.menuStage);
 	}
 }

@@ -73,7 +73,7 @@ public class EditorInputProcessor extends InputAdapter {
 
 		// Save.
 		if (keyCode == Input.Keys.S) {
-			logic.saveMap();
+			logic.openSaveDialog();
 		}
 
 		return true;
