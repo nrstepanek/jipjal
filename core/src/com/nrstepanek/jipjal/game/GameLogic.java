@@ -63,7 +63,7 @@ public class GameLogic {
 	}
 
 	public void pause() {
-		Skin uiSkin = new Skin(Gdx.files.internal("skins/clean-crispy/skin/clean-crispy-ui.json"));
+		Skin uiSkin = new Skin(Gdx.files.internal(Configuration.SKIN_FILE_LOCATION));
 		PauseDialog pauseDialog = new PauseDialog("Warning", uiSkin, gameScreen);
 		pauseDialog.show(gameScreen.menuStage);
 		Gdx.input.setInputProcessor(gameScreen.menuStage);

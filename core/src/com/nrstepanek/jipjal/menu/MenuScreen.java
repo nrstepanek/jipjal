@@ -59,7 +59,7 @@ public class MenuScreen implements Screen {
 	}
 
 	protected void openLevelSelect() {
-		Skin skin = new Skin(Gdx.files.internal("skins/clean-crispy/skin/clean-crispy-ui.json"));
+		Skin skin = new Skin(Gdx.files.internal(Configuration.SKIN_FILE_LOCATION));
 		levelSelectStage = new LevelSelectStage(skin, game);
 		Gdx.input.setInputProcessor(levelSelectStage);
 		

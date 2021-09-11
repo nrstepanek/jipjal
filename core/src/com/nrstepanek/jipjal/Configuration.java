@@ -14,6 +14,8 @@ public final class Configuration {
 	// Pixels to move the camera per second in edit mode.
 	public static final float CAMERA_PPS = 300f;
 
+	public static final String SKIN_FILE_LOCATION = "skins/vis/skin/x1/uiskin.json";
+
     private Configuration() {}
 
 }

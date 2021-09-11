@@ -95,14 +95,14 @@ public class EditorLogic {
 	}
 
 	public void pause() {
-		Skin uiSkin = new Skin(Gdx.files.internal("skins/clean-crispy/skin/clean-crispy-ui.json"));
+		Skin uiSkin = new Skin(Gdx.files.internal(Configuration.SKIN_FILE_LOCATION));
 		ExitDialog exitDialog = new ExitDialog("Warning", uiSkin, editorScreen);
 		exitDialog.show(editorScreen.menuStage);
 		Gdx.input.setInputProcessor(editorScreen.menuStage);
 	}
 
 	public void openSaveDialog() {
-		Skin uiSkin = new Skin(Gdx.files.internal("skins/clean-crispy/skin/clean-crispy-ui.json"));
+		Skin uiSkin = new Skin(Gdx.files.internal(Configuration.SKIN_FILE_LOCATION));
 		SaveDialog saveDialog = new SaveDialog(uiSkin, editorScreen);
 		saveDialog.show(editorScreen.menuStage);
 		Gdx.input.setInputProcessor(editorScreen.menuStage);
