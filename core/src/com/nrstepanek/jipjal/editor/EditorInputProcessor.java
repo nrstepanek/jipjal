@@ -9,16 +9,20 @@ public class EditorInputProcessor extends InputAdapter {
 
 	EditorLogic logic;
 	EditorState state;
+	SelectorTable selectorTable;
 
-	public EditorInputProcessor(EditorLogic logic, EditorState editorState) {
+	public EditorInputProcessor(EditorLogic logic, EditorState editorState, SelectorTable selectorTable) {
 		this.logic = logic;
 		this.state = editorState;
+		this.selectorTable = selectorTable;
 	}
 
 	@Override
 	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-		if (button == Input.Buttons.LEFT) {
-			logic.modifyCell(screenX, screenY);
+		if (!selectorTable.checkClick(screenX, screenY, state)) {
+			if (button == Input.Buttons.LEFT) {
+				logic.modifyCell(screenX, screenY);
+			}
 		}
 
 		return true;

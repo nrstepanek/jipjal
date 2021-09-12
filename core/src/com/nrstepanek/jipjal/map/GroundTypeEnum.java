@@ -1,5 +1,8 @@
 package com.nrstepanek.jipjal.map;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public enum GroundTypeEnum {
 	NONE,
 	GRASS,
@@ -52,5 +55,16 @@ public enum GroundTypeEnum {
 			default:
 				return NONE;
 		}
+	}
+
+	public static List<String> getAllStrings() {
+		List<String> allList = new ArrayList<>();
+		for (GroundTypeEnum groundType : GroundTypeEnum.values()) {
+			if (groundType != NONE) {
+				allList.add(toString(groundType));
+			}
+		}
+
+		return allList;
 	}
 }

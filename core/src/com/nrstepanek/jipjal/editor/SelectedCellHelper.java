@@ -1,5 +1,7 @@
 package com.nrstepanek.jipjal.editor;
 
+import java.util.List;
+
 import com.nrstepanek.jipjal.TextureHolder;
 import com.nrstepanek.jipjal.game.MonsterTypeEnum;
 import com.nrstepanek.jipjal.map.Cell;
@@ -14,6 +16,10 @@ public class SelectedCellHelper {
 	ItemTypeEnum itemType;
 	GroundTypeEnum groundType;
 	MonsterTypeEnum monsterType;
+	List<String> objectTypeStrings;
+	List<String> itemTypeStrings;
+	List<String> groundTypeStrings;
+	List<String> monsterTypeStrings;
 
 	boolean playerStart;
 
@@ -22,6 +28,11 @@ public class SelectedCellHelper {
 	public SelectedCellHelper(TextureHolder th) {
 		this.pl = new PrefabLoader(th);
 		this.groundType = GroundTypeEnum.WALL;
+
+		this.objectTypeStrings = ObjectTypeEnum.getAllStrings();
+		this.itemTypeStrings = ItemTypeEnum.getAllStrings();
+		this.groundTypeStrings = GroundTypeEnum.getAllStrings();
+		this.monsterTypeStrings = MonsterTypeEnum.getAllStrings();
 	}
 
 	public void setObjectType(ObjectTypeEnum objectType) {
@@ -62,6 +73,18 @@ public class SelectedCellHelper {
 		this.groundType = null;
 		this.monsterType = null;
 		this.playerStart = true;
+	}
+
+	public void setFromString(String type) {
+		if (objectTypeStrings.contains(type)) {
+			setObjectType(ObjectTypeEnum.fromString(type));
+		} else if (itemTypeStrings.contains(type)) {
+			setItemType(ItemTypeEnum.fromString(type));
+		} else if (groundTypeStrings.contains(type)) {
+			setGroundType(GroundTypeEnum.fromString(type));
+		} else if (monsterTypeStrings.contains(type)) {
+			setMonsterType(MonsterTypeEnum.fromString(type));
+		}
 	}
 
 	public Cell getSelectedCellPrefab(int x, int y) {

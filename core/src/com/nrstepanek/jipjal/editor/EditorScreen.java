@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.nrstepanek.jipjal.Configuration;
@@ -28,10 +29,15 @@ public class EditorScreen implements Screen {
 	private int resolutionHeight;
 
 	public Stage menuStage;
+
+	public Stage selectorTableStage;
+
+	private SelectorTable selectorTable;
 	
 	public EditorScreen(JipjalGame game) {
 		this.game = game;
 		this.menuStage = new Stage();
+		this.selectorTableStage = new Stage();
 
 		MapLoader loader = new MapLoader(game.textureHolder);
 
@@ -45,7 +51,11 @@ public class EditorScreen implements Screen {
 		gameMap.setName("test_map");
 		EditorState editorState = new EditorState(game.textureHolder);
 		logic = new EditorLogic(this.gameMap, this, editorState);
-		this.inputProcessor = new EditorInputProcessor(this.logic, editorState);
+
+		selectorTable = new SelectorTable(game.textureHolder, new Skin(Gdx.files.internal(Configuration.SKIN_FILE_LOCATION)));
+		selectorTableStage.addActor(selectorTable);
+
+		this.inputProcessor = new EditorInputProcessor(this.logic, editorState, this.selectorTable);
 	}
 
 	@Override
@@ -72,6 +82,9 @@ public class EditorScreen implements Screen {
 		game.batch.begin();
 		gameMap.drawCells(game.batch);
 		game.batch.end();
+
+		selectorTableStage.act();
+		selectorTableStage.draw();
 
 		menuStage.act();
 		menuStage.draw();

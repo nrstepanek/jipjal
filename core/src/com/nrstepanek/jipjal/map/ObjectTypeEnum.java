@@ -1,5 +1,8 @@
 package com.nrstepanek.jipjal.map;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public enum ObjectTypeEnum {
 	NONE,
 	BLUE_LOCK,
@@ -52,5 +55,16 @@ public enum ObjectTypeEnum {
 			default:
 				return NONE;
 		}
+	}
+
+	public static List<String> getAllStrings() {
+		List<String> allList = new ArrayList<>();
+		for (ObjectTypeEnum objectType : ObjectTypeEnum.values()) {
+			if (objectType != NONE) {
+				allList.add(toString(objectType));
+			}
+		}
+
+		return allList;
 	}
 }

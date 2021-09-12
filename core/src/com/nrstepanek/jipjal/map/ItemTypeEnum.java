@@ -1,5 +1,8 @@
 package com.nrstepanek.jipjal.map;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public enum ItemTypeEnum {
 	NONE,
 	CHIP,
@@ -43,5 +46,16 @@ public enum ItemTypeEnum {
 			default:
 				return NONE;
 		}
+	}
+
+	public static List<String> getAllStrings() {
+		List<String> allList = new ArrayList<>();
+		for (ItemTypeEnum itemType : ItemTypeEnum.values()) {
+			if (itemType != NONE) {
+				allList.add(toString(itemType));
+			}
+		}
+
+		return allList;
 	}
 }
