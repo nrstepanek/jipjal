@@ -108,7 +108,7 @@ public class SelectedCellHelper {
 					return null;
 			}
 		} else if (itemType != null) {
-
+			return pl.getItemPrefab(x, y, itemType);
 		} else if (groundType != null) {
 			switch (groundType) {
 				case GRASS:

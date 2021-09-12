@@ -50,7 +50,7 @@ public enum GroundTypeEnum {
 				return FORCE_UP;
 			case "force_right":
 				return FORCE_RIGHT;
-			case "firce_down":
+			case "force_down":
 				return FORCE_DOWN;
 			default:
 				return NONE;
