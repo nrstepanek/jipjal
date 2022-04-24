@@ -7,18 +7,18 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 
 public class MapLabelListener extends ClickListener {
 
-	private String mapName;
+    private String mapName;
 
-	private JipjalGame game;
+    private JipjalGame game;
 
-	public MapLabelListener(String mapName, JipjalGame game) {
-		super();
-		this.mapName = mapName;
-		this.game = game;
-	}
-	
-	@Override
-	public void clicked(InputEvent event, float x, float y) {
-		game.setScreen(new GameScreen(game, mapName));
-	}
+    public MapLabelListener(String mapName, JipjalGame game) {
+        super();
+        this.mapName = mapName;
+        this.game = game;
+    }
+    
+    @Override
+    public void clicked(InputEvent event, float x, float y) {
+        game.setScreen(new GameScreen(game, mapName));
+    }
 }

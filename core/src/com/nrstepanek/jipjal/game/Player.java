@@ -7,58 +7,58 @@ import com.nrstepanek.jipjal.map.ItemTypeEnum;
 
 public class Player extends GridDrawable {
 
-	private Inventory inventory;
+    private Inventory inventory;
 
-	private boolean sliding;
-	private boolean forceSliding;
-	private DirectionEnum slipDirection;
+    private boolean sliding;
+    private boolean forceSliding;
+    private DirectionEnum slipDirection;
 
     public Player(Texture t, int x, int y) {
         super(t, x, y);
-		this.inventory = new Inventory();
+        this.inventory = new Inventory();
     }
 
-	public void update() {
-		
-	}
+    public void update() {
+        
+    }
 
-	public boolean hasItem(ItemTypeEnum itemType) {
-		return inventory.hasItem(itemType);
-	}
+    public boolean hasItem(ItemTypeEnum itemType) {
+        return inventory.hasItem(itemType);
+    }
 
-	public int getItemIndex(ItemTypeEnum itemType) {
-		return inventory.getItemIndex(itemType);
-	}
+    public int getItemIndex(ItemTypeEnum itemType) {
+        return inventory.getItemIndex(itemType);
+    }
 
-	public Item removeItemAtIndex(int index) {
-		return inventory.removeItemAtIndex(index);
-	}
+    public Item removeItemAtIndex(int index) {
+        return inventory.removeItemAtIndex(index);
+    }
 
-	public Inventory getInventory() {
-		return this.inventory;
-	}
+    public Inventory getInventory() {
+        return this.inventory;
+    }
 
-	public boolean getSliding() {
-		return this.sliding;
-	}
+    public boolean getSliding() {
+        return this.sliding;
+    }
 
-	public void setSliding(boolean sliding) {
-		this.sliding = sliding;
-	}
+    public void setSliding(boolean sliding) {
+        this.sliding = sliding;
+    }
 
-	public boolean getForceSliding() {
-		return this.forceSliding;
-	}
+    public boolean getForceSliding() {
+        return this.forceSliding;
+    }
 
-	public void setForceSliding(boolean forceSliding) {
-		this.forceSliding = forceSliding;
-	}
+    public void setForceSliding(boolean forceSliding) {
+        this.forceSliding = forceSliding;
+    }
 
-	public DirectionEnum getSlipDirection() {
-		return this.slipDirection;
-	}
+    public DirectionEnum getSlipDirection() {
+        return this.slipDirection;
+    }
 
-	public void setSlipDirection(DirectionEnum slipDirection) {
-		this.slipDirection = slipDirection;
-	}
+    public void setSlipDirection(DirectionEnum slipDirection) {
+        this.slipDirection = slipDirection;
+    }
 }

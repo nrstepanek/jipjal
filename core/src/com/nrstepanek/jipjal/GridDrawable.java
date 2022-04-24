@@ -26,11 +26,11 @@ public class GridDrawable {
         return this.sprite;
     }
 
-	public void setSprite(Sprite sprite) {
-		this.sprite = sprite;
-		this.sprite.setX(x * Configuration.GRID_WIDTH);
+    public void setSprite(Sprite sprite) {
+        this.sprite = sprite;
+        this.sprite.setX(x * Configuration.GRID_WIDTH);
         this.sprite.setY(y * Configuration.GRID_HEIGHT);
-	}
+    }
 
     public int getX() {
         return this.x;

@@ -8,18 +8,18 @@ import com.nrstepanek.jipjal.menu.MenuScreen;
 
 public class LevelSelectListener extends InputListener {
 
-	private JipjalGame game;
-	
-	public LevelSelectListener(JipjalGame game) {
-		super();
-		this.game = game;
-	}
+    private JipjalGame game;
+    
+    public LevelSelectListener(JipjalGame game) {
+        super();
+        this.game = game;
+    }
 
-	@Override
-	public boolean keyDown(InputEvent event, int keycode) {
-		if (keycode == Input.Keys.ESCAPE) {
-			game.setScreen(new MenuScreen(game));
-		}
-		return true;
-	}
+    @Override
+    public boolean keyDown(InputEvent event, int keycode) {
+        if (keycode == Input.Keys.ESCAPE) {
+            game.setScreen(new MenuScreen(game));
+        }
+        return true;
+    }
 }

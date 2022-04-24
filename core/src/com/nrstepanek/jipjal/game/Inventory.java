@@ -8,52 +8,52 @@ import com.nrstepanek.jipjal.map.ItemTypeEnum;
 
 public class Inventory {
 
-	List<Item> items;
-	int chips;
+    List<Item> items;
+    int chips;
 
-	public Inventory() {
-		this.items = new ArrayList<>();
-	}
+    public Inventory() {
+        this.items = new ArrayList<>();
+    }
 
-	public List<Item> getItems() {
-		return this.items;
-	}
+    public List<Item> getItems() {
+        return this.items;
+    }
 
-	public void addItem(Item item) {
-		this.items.add(item);
-	}
+    public void addItem(Item item) {
+        this.items.add(item);
+    }
 
-	public boolean hasItem(ItemTypeEnum itemType) {
-		for (Item item : items) {
-			if (item.getItemType() == itemType)
-				return true;
-		}
+    public boolean hasItem(ItemTypeEnum itemType) {
+        for (Item item : items) {
+            if (item.getItemType() == itemType)
+                return true;
+        }
 
-		return false;
-	}
+        return false;
+    }
 
-	public int getItemIndex(ItemTypeEnum itemType) {
-		for (int i = 0; i < items.size(); i++) {
-			if (items.get(i).getItemType() == itemType)
-				return i;
-		}
+    public int getItemIndex(ItemTypeEnum itemType) {
+        for (int i = 0; i < items.size(); i++) {
+            if (items.get(i).getItemType() == itemType)
+                return i;
+        }
 
-		return -1;
-	}
+        return -1;
+    }
 
-	public Item removeItemAtIndex(int index) {
-		return this.items.remove(index);
-	}
+    public Item removeItemAtIndex(int index) {
+        return this.items.remove(index);
+    }
 
-	public int getChips() {
-		return this.chips;
-	}
+    public int getChips() {
+        return this.chips;
+    }
 
-	public void setChips(int chips) {
-		this.chips = chips;
-	}
+    public void setChips(int chips) {
+        this.chips = chips;
+    }
 
-	public void addChip() {
-		this.chips += 1;
-	}
+    public void addChip() {
+        this.chips += 1;
+    }
 }
