@@ -137,7 +137,7 @@ public class GameLogic {
         } else {
             if (player.getForceSliding()) {
                 Cell nextCell = getCellInDirection(player.getX(), player.getY(), player.getSlipDirection());
-                if (nextCell.getSolid()) {
+                if (nextCell == null || nextCell.getSolid()) {
                     player.setSliding(false);
                     player.setForceSliding(false);
                     player.setSlipDirection(DirectionEnum.NONE);

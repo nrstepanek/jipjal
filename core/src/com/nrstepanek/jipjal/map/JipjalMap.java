@@ -215,12 +215,15 @@ public class JipjalMap {
     }
 
     public Cell getCell(int x, int y) {
+        if (!isWithinBounds(x, y)) {
+            return null;
+        }
         return cellMap.get(getCellId(x, y));
     }
 
-  public Cell getCell(List<Integer> coords) {
-    return cellMap.get(getCellId(coords.get(0), coords.get(1)));
-  }
+    public Cell getCell(List<Integer> coords) {
+        return cellMap.get(getCellId(coords.get(0), coords.get(1)));
+    }
 
     public int getWidth() {
         return this.width;
