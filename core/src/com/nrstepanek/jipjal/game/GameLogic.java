@@ -6,6 +6,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.nrstepanek.jipjal.Configuration;
 import com.nrstepanek.jipjal.CoordHelper;
+import com.nrstepanek.jipjal.game.monsters.Monster;
 import com.nrstepanek.jipjal.map.Cell;
 import com.nrstepanek.jipjal.map.GroundTypeEnum;
 import com.nrstepanek.jipjal.map.Item;
@@ -45,16 +46,7 @@ public class GameLogic {
 
 		List<Monster> monsters = gameMap.getMonsters();
 		for (Monster monster : monsters) {
-			boolean updated = monster.update(dt, this.gameMap);
-
-			if (updated) {
-				int oldX = monster.getX();
-				int oldY = monster.getY();
-				List<Integer> newCoords = CoordHelper.getCoordsFromDirection(oldX, oldY, monster.getFacing());
-				monster.setPosition(newCoords.get(0), newCoords.get(1));
-				// slidingLogic(oldX, oldY);
-				gameScreen.updateCamera();
-			}
+			monster.update(dt, this.gameMap);
 		}
 
 		if (checkPlayerMonsterCollission()) {

@@ -23,4 +23,38 @@ public enum DirectionEnum {
 
 		return NONE;
 	}
+
+  public static DirectionEnum getRightDirection(DirectionEnum direction) {
+		switch (direction) {
+		case LEFT:
+			return UP;
+		case DOWN:
+			return LEFT;
+		case RIGHT:
+			return DOWN;
+		case UP:
+			return RIGHT;
+		case NONE:
+			return NONE;
+		}
+
+		return NONE;
+	}
+
+  public static DirectionEnum getBackwardsDirection(DirectionEnum direction) {
+		switch (direction) {
+		case LEFT:
+			return RIGHT;
+		case DOWN:
+			return UP;
+		case RIGHT:
+			return LEFT;
+		case UP:
+			return DOWN;
+		case NONE:
+			return NONE;
+		}
+
+		return NONE;
+	}
 }

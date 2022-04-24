@@ -10,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.nrstepanek.jipjal.Configuration;
 import com.nrstepanek.jipjal.JipjalGame;
+import com.nrstepanek.jipjal.game.monsters.Monster;
 import com.nrstepanek.jipjal.map.JipjalMap;
 import com.nrstepanek.jipjal.map.MapLoader;
 import com.nrstepanek.jipjal.menu.MenuScreen;
@@ -81,6 +82,9 @@ public class EditorScreen implements Screen {
 
 		game.batch.begin();
 		gameMap.drawCells(game.batch);
+		for (Monster monster : gameMap.getMonsters()) {
+			monster.getSprite().draw(game.batch);
+		}
 		game.batch.end();
 
 		selectorTableStage.act();

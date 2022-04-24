@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.nrstepanek.jipjal.TextureHolder;
 import com.nrstepanek.jipjal.game.MonsterTypeEnum;
+import com.nrstepanek.jipjal.game.monsters.Monster;
 import com.nrstepanek.jipjal.map.Cell;
 import com.nrstepanek.jipjal.map.GroundTypeEnum;
 import com.nrstepanek.jipjal.map.ItemTypeEnum;
@@ -128,16 +129,29 @@ public class SelectedCellHelper {
 				case NONE:
 					return null;
 			}
-
 		} else if (monsterType != null) {
-
+      return pl.getGrassPrefab(x, y);
 		}
 
 		return null;
 	}
 
+  public Monster getMonsterPrefab(int x, int y) {
+    switch (monsterType) {
+      case BUG:
+        return pl.getBugPrefab(x, y);
+      case NONE:
+      default:
+        return null;
+    }
+  }
+
 	public boolean onGrass() {
 		return this.groundType == GroundTypeEnum.GRASS;
 	}
+
+  public boolean isMonsterSelected() {
+    return this.monsterType != null;
+  }
 }
 

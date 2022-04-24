@@ -1,6 +1,8 @@
 package com.nrstepanek.jipjal.map;
 
 import com.nrstepanek.jipjal.TextureHolder;
+import com.nrstepanek.jipjal.game.monsters.Bug;
+import com.nrstepanek.jipjal.game.monsters.Monster;
 
 public class PrefabLoader {
 	
@@ -114,4 +116,11 @@ public class PrefabLoader {
 		forceUpCell.setGroundType(GroundTypeEnum.FORCE_UP);
 		return forceUpCell;
 	}
+
+  // MONSTER PREFABS
+
+  public Monster getBugPrefab(int x, int y) {
+    Monster bug = new Bug(th.getTexture("bug"), x, y);
+    return bug;
+  }
 }

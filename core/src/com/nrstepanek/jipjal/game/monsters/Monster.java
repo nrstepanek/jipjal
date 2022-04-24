@@ -1,18 +1,16 @@
-package com.nrstepanek.jipjal.game;
-
-import java.util.List;
+package com.nrstepanek.jipjal.game.monsters;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.nrstepanek.jipjal.CoordHelper;
 import com.nrstepanek.jipjal.GridDrawable;
-import com.nrstepanek.jipjal.map.Cell;
+import com.nrstepanek.jipjal.game.DirectionEnum;
+import com.nrstepanek.jipjal.game.MonsterTypeEnum;
 import com.nrstepanek.jipjal.map.JipjalMap;
 
 public class Monster extends GridDrawable {
 
 	private MonsterTypeEnum type;
 
-	private DirectionEnum facing;
+	DirectionEnum facing;
 
 	private float speed;
 	private float timeSinceLastUpdate;
@@ -45,34 +43,14 @@ public class Monster extends GridDrawable {
 	}
 
 	// Returns true if it was time for the monster to update.
-	public boolean update(float dt, JipjalMap map) {
+	public void update(float dt, JipjalMap map) {
 		timeSinceLastUpdate += dt;
 		if (timeSinceLastUpdate >= speed) {
 			timeSinceLastUpdate -= speed;
-			switch (type) {
-			case BUG:
-				bugLogic(map);
-				return true;
-			case NONE:
-				return false;
-			}
+			this.logic(map);
 		}
-
-		return false;
 	}
 
-	public void bugLogic(JipjalMap map) {
-		DirectionEnum leftDirection = DirectionEnum.getLeftDirection(facing);
-		List<Integer> leftCellCoords = CoordHelper.getCoordsFromDirection(this.getX(), this.getY(), leftDirection);
-		int leftCellX = leftCellCoords.get(0);
-		int leftCellY = leftCellCoords.get(1);
-
-		Cell newCell = map.getCell(leftCellX, leftCellY);
-
-		// Turn left if the cell to our left is empty.
-		if (!newCell.getSolid()) {
-			this.facing = leftDirection;
-		}
-
-	}
+  // To be overriden by specific monster subclasses.
+  void logic(JipjalMap map) { }
 }

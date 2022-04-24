@@ -7,6 +7,7 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
 import com.nrstepanek.jipjal.TextureHolder;
+import com.nrstepanek.jipjal.game.MonsterTypeEnum;
 
 public class MapLoader {
 
@@ -101,13 +102,30 @@ public class MapLoader {
 		}
 
 		JsonValue itemsJson = mapJson.get("items");
-		for (JsonValue itemJson : itemsJson) {
-			ItemTypeEnum itemType = ItemTypeEnum.fromString(itemJson.getString("type"));
-			int itemX = itemJson.getInt("x");
-			int itemY = itemJson.getInt("y");
-			Cell itemCell = pl.getItemPrefab(itemX, itemY, itemType);
-			map.addToCellMap(itemCell);
-		}
+    if (itemsJson != null) {
+      for (JsonValue itemJson : itemsJson) {
+        ItemTypeEnum itemType = ItemTypeEnum.fromString(itemJson.getString("type"));
+        int itemX = itemJson.getInt("x");
+        int itemY = itemJson.getInt("y");
+        Cell itemCell = pl.getItemPrefab(itemX, itemY, itemType);
+        map.addToCellMap(itemCell);
+      }
+    }
+
+    JsonValue monstersJson = mapJson.get("monsters");
+    if (monstersJson != null) {
+      for (JsonValue monsterJson : monstersJson) {
+        MonsterTypeEnum monsterType = MonsterTypeEnum.fromString(monsterJson.getString("type"));
+        int monsterX = monsterJson.getInt("x");
+        int monsterY = monsterJson.getInt("y");
+        switch (monsterType) {
+          case BUG:
+            map.addMonster(pl.getBugPrefab(monsterX, monsterY));
+            break;
+          case NONE:
+        }
+      }
+    }
 
 		map.setPlayerStartX(mapJson.getInt("playerStartX"));
 		map.setPlayerStartY(mapJson.getInt("playerStartY"));

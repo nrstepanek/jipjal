@@ -7,6 +7,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.nrstepanek.jipjal.JipjalGame;
+import com.nrstepanek.jipjal.game.monsters.Monster;
 import com.nrstepanek.jipjal.map.JipjalMap;
 import com.nrstepanek.jipjal.map.MapLoader;
 import com.nrstepanek.jipjal.menu.MenuScreen;

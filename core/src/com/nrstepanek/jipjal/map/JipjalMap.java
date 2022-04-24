@@ -11,8 +11,8 @@ import java.lang.Math;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.nrstepanek.jipjal.TextureHolder;
-import com.nrstepanek.jipjal.game.Monster;
 import com.nrstepanek.jipjal.game.MonsterTypeEnum;
+import com.nrstepanek.jipjal.game.monsters.Monster;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonWriter;
 
@@ -218,6 +218,10 @@ public class JipjalMap {
 		return cellMap.get(getCellId(x, y));
 	}
 
+  public Cell getCell(List<Integer> coords) {
+    return cellMap.get(getCellId(coords.get(0), coords.get(1)));
+  }
+
     public int getWidth() {
         return this.width;
     }
@@ -365,6 +369,19 @@ public class JipjalMap {
 			itemJson.writeValue("y", itemYs.get(i));
 			itemJson.writeObjectEnd();
 		}
+    json.writeArrayEnd();
+
+    json.writeArrayStart("monsters");
+    for (Monster monster : monsters) {
+      Json monsterJson = new Json();
+      monsterJson.setOutputType(JsonWriter.OutputType.json);
+      monsterJson.setWriter(writer);
+      monsterJson.writeObjectStart();
+      monsterJson.writeValue("type", MonsterTypeEnum.toString(monster.getEnemyType()));
+      monsterJson.writeValue("x", monster.getX());
+      monsterJson.writeValue("y", monster.getY());
+      monsterJson.writeObjectEnd();
+    }
 		json.writeArrayEnd();
 
 		json.writeObjectEnd();

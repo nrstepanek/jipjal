@@ -36,6 +36,9 @@ public class EditorLogic {
 			map.removeCellAt(cellCoords.get(0), cellCoords.get(1));
 			Cell newCell = editorState.selectedCell.getSelectedCellPrefab(cellCoords.get(0), cellCoords.get(1));
 			map.addToCellMap(newCell);
+      if (editorState.selectedCell.isMonsterSelected()) {
+        map.addMonster(editorState.selectedCell.getMonsterPrefab(cellCoords.get(0), cellCoords.get(1)));
+      }
 		}
 	}
 
