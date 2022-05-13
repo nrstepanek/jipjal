@@ -17,14 +17,16 @@ public class MainMenuStage extends Stage {
     public void setup(Skin skin) {
         campaignButton = new TextButton("Campaign", skin);
         campaignButton.setPosition(50.0f, 50.0f);
-        campaignButton.setSize(width, height);
+        campaignButton.setSize(100.0f, 50.0f);
         this.addActor(campaignButton);
     }
 
     public boolean hitCampaignButton(int screenX, int screenY) {
         int stageY = Configuration.SCREEN_HEIGHT - screenY;
-        System.out.println(screenX);
-        System.out.println(stageY);
-        return campaignButton == this.hit(screenX, stageY, true);
+        float minY = campaignButton.getY();
+        float minX = campaignButton.getX();
+        float maxY = campaignButton.getY() + campaignButton.getHeight();
+        float maxX = campaignButton.getX() + campaignButton.getWidth();
+        return screenX > minX && screenX < maxX && stageY > minY && stageY < maxY;
     }
 }
