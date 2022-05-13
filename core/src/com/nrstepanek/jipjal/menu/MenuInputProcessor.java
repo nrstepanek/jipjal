@@ -33,4 +33,14 @@ public class MenuInputProcessor extends InputAdapter {
         }
         return true;
     }
+
+    @Override
+    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        if (!menuScreen.campaignSelectOpen && !menuScreen.levelSelectOpen) {
+            if (menuScreen.mainMenu.hitCampaignButton(screenX, screenY)) {
+                menuScreen.campaignSelectOpen = true;
+            }
+        }
+        return true;
+    }
 }

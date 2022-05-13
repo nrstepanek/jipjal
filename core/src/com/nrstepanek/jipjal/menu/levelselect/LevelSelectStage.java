@@ -1,4 +1,4 @@
-package com.nrstepanek.jipjal.menu.level_select;
+package com.nrstepanek.jipjal.menu.levelselect;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;

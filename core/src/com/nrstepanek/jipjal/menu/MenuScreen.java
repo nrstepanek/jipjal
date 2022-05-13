@@ -4,10 +4,12 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.nrstepanek.jipjal.Configuration;
 import com.nrstepanek.jipjal.JipjalGame;
-import com.nrstepanek.jipjal.menu.level_select.LevelSelectStage;
+import com.nrstepanek.jipjal.menu.levelselect.LevelSelectStage;
+import com.nrstepanek.jipjal.menu.mainmenu.MainMenuStage;
 
 public class MenuScreen implements Screen {
 
@@ -19,12 +21,19 @@ public class MenuScreen implements Screen {
 
     private LevelSelectStage levelSelectStage;
 
+    MainMenuStage mainMenu;
+
     boolean levelSelectOpen;
+    boolean campaignSelectOpen;
+
+    Skin mainSkin;
 
     public MenuScreen(JipjalGame game) {
         this.game = game;
         font = new BitmapFont();
         menuInputProcessor = new MenuInputProcessor(this.game, this);
+        this.mainSkin = new Skin(Gdx.files.internal(Configuration.SKIN_FILE_LOCATION));
+        this.mainMenu = new MainMenuStage(this.mainSkin);
     }
 
     @Override
@@ -39,18 +48,22 @@ public class MenuScreen implements Screen {
         Gdx.gl.glClearColor(0, .25f, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        if (!levelSelectOpen) {
-            game.batch.setProjectionMatrix(game.camera.combined);
-        
-            game.batch.begin();
-            //font.draw(game.batch, "Jipjal!", Gdx.graphics.getWidth() * .25f, Gdx.graphics.getHeight() * .75f);
-            font.draw(game.batch, "Jipjal!", Configuration.VIEWPORT_WIDTH * .25f, Configuration.VIEWPORT_HEIGHT * .75f);
-            font.draw(game.batch, "Press space to play.", Configuration.VIEWPORT_WIDTH * .25f, Configuration.VIEWPORT_HEIGHT * .25f);
-            game.batch.end();
-        } else {
+        if (campaignSelectOpen) {
+            System.out.println("campaign");
+        }
+        else if (levelSelectOpen) {
             levelSelectStage.act(Gdx.graphics.getDeltaTime());
             levelSelectStage.draw();
         }
+        else {
+            mainMenu.act(Gdx.graphics.getDeltaTime());
+            mainMenu.draw();
+        }
+
+        /*if (mainMenu.isCampaignClicked()) {
+            this.campaignSelectOpen = true;
+            this.levelSelectOpen = false;
+        }*/
     }
 
     public void updateCamera() {
@@ -59,8 +72,7 @@ public class MenuScreen implements Screen {
     }
 
     protected void openLevelSelect() {
-        Skin skin = new Skin(Gdx.files.internal(Configuration.SKIN_FILE_LOCATION));
-        levelSelectStage = new LevelSelectStage(skin, game);
+        levelSelectStage = new LevelSelectStage(mainSkin, game);
         Gdx.input.setInputProcessor(levelSelectStage);
         
         levelSelectOpen = true;

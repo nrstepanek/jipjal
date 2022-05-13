@@ -7,26 +7,26 @@ import com.nrstepanek.jipjal.GridDrawable;
 public class Cell extends GridDrawable {
 
     private boolean solid;
-	private boolean dangerous;
-	private boolean isGoal;
-	private boolean isPlayerStart;
+    private boolean dangerous;
+    private boolean isGoal;
+    private boolean isPlayerStart;
 
-	private ObjectTypeEnum objectType;
+    private ObjectTypeEnum objectType;
 
-	private GroundTypeEnum groundType;
+    private GroundTypeEnum groundType;
 
-	private Sprite groundSprite;
+    private Sprite groundSprite;
 
-	private Item item;
+    private Item item;
 
     public Cell(Texture groundTexture, int x, int y) {
         super(groundTexture, x, y);
         this.solid = false;
-		this.dangerous = false;
-		this.isGoal = false;
-		this.isPlayerStart = false;
-		this.groundType = GroundTypeEnum.NONE;
-		this.objectType = ObjectTypeEnum.NONE;
+        this.dangerous = false;
+        this.isGoal = false;
+        this.isPlayerStart = false;
+        this.groundType = GroundTypeEnum.NONE;
+        this.objectType = ObjectTypeEnum.NONE;
     }
 
     public boolean getSolid() {
@@ -37,79 +37,79 @@ public class Cell extends GridDrawable {
         this.solid = solid;
     }
 
-	public boolean getDangerous() {
-		return this.dangerous;
-	}
+    public boolean getDangerous() {
+        return this.dangerous;
+    }
 
-	public void setDangerous(boolean dangerous) {
-		this.dangerous = dangerous;
-	}
+    public void setDangerous(boolean dangerous) {
+        this.dangerous = dangerous;
+    }
 
-	public boolean getIsGoal() {
-		return this.isGoal;
-	}
+    public boolean getIsGoal() {
+        return this.isGoal;
+    }
 
-	public void setIsGoal(boolean isGoal) {
-		this.isGoal = isGoal;
-	}
+    public void setIsGoal(boolean isGoal) {
+        this.isGoal = isGoal;
+    }
 
-	public ObjectTypeEnum getObjectType() {
-		return this.objectType;
-	}
+    public ObjectTypeEnum getObjectType() {
+        return this.objectType;
+    }
 
-	public boolean getIsPlayerStart() {
-		return this.isPlayerStart;
-	}
+    public boolean getIsPlayerStart() {
+        return this.isPlayerStart;
+    }
 
-	public void setIsPlayerStart(boolean isPlayerStart) {
-		this.isPlayerStart = isPlayerStart;
-	}
+    public void setIsPlayerStart(boolean isPlayerStart) {
+        this.isPlayerStart = isPlayerStart;
+    }
 
-	public GroundTypeEnum getGroundType() {
-		return this.groundType;
-	}
+    public GroundTypeEnum getGroundType() {
+        return this.groundType;
+    }
 
-	public void setGroundType(GroundTypeEnum groundType) {
-		this.groundType = groundType;
-	}
+    public void setGroundType(GroundTypeEnum groundType) {
+        this.groundType = groundType;
+    }
 
-	public boolean isForceTile() {
-		return this.groundType == GroundTypeEnum.FORCE_DOWN ||
-			   this.groundType == GroundTypeEnum.FORCE_LEFT ||
-			   this.groundType == GroundTypeEnum.FORCE_UP ||
-			   this.groundType == GroundTypeEnum.FORCE_RIGHT;
-	}
+    public boolean isForceTile() {
+        return this.groundType == GroundTypeEnum.FORCE_DOWN ||
+               this.groundType == GroundTypeEnum.FORCE_LEFT ||
+               this.groundType == GroundTypeEnum.FORCE_UP ||
+               this.groundType == GroundTypeEnum.FORCE_RIGHT;
+    }
 
-	public void setObjectType(ObjectTypeEnum objectType, Texture texture) {
-		this.objectType = objectType;
-		this.groundSprite = this.getSprite();
-		this.setSprite(new Sprite(texture));
-	}
+    public void setObjectType(ObjectTypeEnum objectType, Texture texture) {
+        this.objectType = objectType;
+        this.groundSprite = this.getSprite();
+        this.setSprite(new Sprite(texture));
+    }
 
-	public void destroyObject() {
-		this.objectType = ObjectTypeEnum.NONE;
-		this.setSprite(this.groundSprite);
-		this.solid = false;
-	}
+    public void destroyObject() {
+        this.objectType = ObjectTypeEnum.NONE;
+        this.setSprite(this.groundSprite);
+        this.solid = false;
+    }
 
-	public void addItem(Item item, Texture texture) {
-		this.item = item;
-		this.groundSprite = this.getSprite();
-		this.setSprite(new Sprite(texture));
-	}
+    public void addItem(Item item, Texture texture) {
+        this.item = item;
+        this.groundSprite = this.getSprite();
+        this.setSprite(new Sprite(texture));
+    }
 
-	public Item removeItem() {
-		Item temp = this.item;
-		this.setSprite(this.groundSprite);
-		this.item = null;
-		return temp;
-	}
+    public Item removeItem() {
+        Item temp = this.item;
+        this.setSprite(this.groundSprite);
+        this.item = null;
+        return temp;
+    }
 
-	public Item getItem() {
-		return this.item;
-	}
+    public Item getItem() {
+        return this.item;
+    }
 
-	public boolean hasItem() {
-		return this.item != null;
-	}
+    public boolean hasItem() {
+        return this.item != null;
+    }
 }

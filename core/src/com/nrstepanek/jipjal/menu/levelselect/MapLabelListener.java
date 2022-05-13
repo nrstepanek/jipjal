@@ -1,4 +1,4 @@
-package com.nrstepanek.jipjal.menu.level_select;
+package com.nrstepanek.jipjal.menu.levelselect;
 
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.nrstepanek.jipjal.JipjalGame;
